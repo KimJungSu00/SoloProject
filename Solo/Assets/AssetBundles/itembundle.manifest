@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 2177400938
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9a1543a1dd69e6af7377bb2e2238c4e9
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 36c33a819640bead83b84b1645a12e6d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+Assets:
+- Assets/New Folder/Default.png
+- Assets/New Folder/MPPotion.PNG
+- Assets/New Folder/HPPotion.PNG
+- Assets/New Folder/BeginnerSword.PNG
+Dependencies: []

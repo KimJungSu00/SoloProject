@@ -1,0 +1,358 @@
+fileFormatVersion: 2
+guid: ddb25486e9cdeb541ace8d2038d373a0
+timeCreated: 1537252123
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: DLG_BUTTON_TAB_0
+    21300002: DLG_BUTTON_TAB_1
+    21300004: DLG_BUTTON_TAB_2
+    21300006: DLG_BUTTON_TAB_3
+    21300008: DLG_BUTTON_TAB_4
+    21300010: DLG_BUTTON_TAB_5
+    21300012: DLG_BUTTON_TAB_6
+    21300014: DLG_BUTTON_TAB_7
+    21300016: DLG_BUTTON_TAB_8
+    21300018: DLG_BUTTON_TAB_9
+    21300020: DLG_BUTTON_TAB_10
+    21300022: DLG_BUTTON_TAB_11
+    21300024: DLG_BUTTON_TAB_12
+    21300026: DLG_BUTTON_TAB_13
+    21300028: DLG_BUTTON_TAB_14
+    21300030: DLG_BUTTON_TAB_15
+    21300032: DLG_BUTTON_TAB_16
+    21300034: DLG_BUTTON_TAB_17
+    21300036: DLG_BUTTON_TAB_18
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: WebGL
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 481
+        width: 190
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_1
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 482
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_2
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 449
+        width: 190
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_3
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 450
+        width: 27
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 415
+        width: 191
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 380
+        width: 73
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_6
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 379
+        width: 147
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_7
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 350
+        width: 73
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_8
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 350
+        width: 100
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 318
+        width: 201
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 191
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 215
+        width: 191
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 216
+        width: 142
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_13
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 179
+        width: 130
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 142
+        width: 130
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_15
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 112
+        width: 110
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_16
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 110
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_17
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 85
+        width: 110
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: DLG_BUTTON_TAB_18
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 85
+        width: 110
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
