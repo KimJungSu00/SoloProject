@@ -10,23 +10,19 @@ namespace ItemGroup
         Equipment,
     }
 
-    public class Item : MonoBehaviour
+    public class Item
     {
-        ItemController itemCotroller;
-        
         public int CodeNum;
-        string name;
-        public string Name { get { return name; }}
-        ItemType itemType;
-        public ItemType ItemType { get { return itemType; }}
-        Sprite sprite;
-        public Sprite Sprite { get { return sprite; } }
-        private void Start()
+        public string Name; 
+        public ItemType ItemType;
+        public Sprite Sprite;
+        public Item()
         {
-            itemCotroller = GameObject.FindGameObjectWithTag("ItemController").GetComponent<ItemController>();
-            itemCotroller.GetItemInfo(CodeNum,out name,out sprite,out itemType);
+            CodeNum = 0;
+            Name = "Default";
+            ItemType = ItemType.Default;
+            Sprite = null;
         }
-
     }
 
 }

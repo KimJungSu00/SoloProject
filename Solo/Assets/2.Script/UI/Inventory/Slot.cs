@@ -137,6 +137,15 @@ namespace UI.Presenter
             slotB.SlotUpdate();
         }
 
-
+        public void LoadSlot(int itemCode, int itemCount)   
+        {
+            Debug.Log(itemCode);
+            ItemCode = itemCode;
+            ItemCount = itemCount;
+            item = ItemController.Instance.GetItem(itemCode);
+            if (ItemCount != 0)
+                IsEmpty = false;
+            SlotUpdate();
+        }
     }
 }

@@ -9,12 +9,8 @@ public class AddItem : MonoBehaviour {
     [SerializeField]
     InventoryData inventory;
 
-    [SerializeField]
-    Item item;
-
-	
-    public void Additem()
+    public void Additem(int itemCode)
     {
-        inventory.AddItem(item);
+        inventory.AddItem(ItemController.Instance.GetItem(itemCode));
     }
 }

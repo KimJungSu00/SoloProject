@@ -4,10 +4,11 @@ using UnityEngine;
 using UI.Presenter;
 using System;
 using ManagerGroup;
+using System.IO;
 namespace Data
 {
     [Serializable]
-    public struct InventoryStruct
+    public class InventoryStruct
     {
         public int index;
         public int itemCode;
@@ -17,14 +18,14 @@ namespace Data
     {
         [SerializeField]
         public InventoryStruct[] invenData;
-       // public Dictionary<int, InventoryStruct> invenData;
+        // public Dictionary<int, InventoryStruct> invenData;
         Inventory inventory;
 
         private void Start()
         {
             inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
             invenData = new InventoryStruct[inventory.SlotList.Count];
-           // invenData = new Dictionary<int, InventoryStruct>();
+            // invenData = new Dictionary<int, InventoryStruct>();
         }
 
         public void AddItem(ItemGroup.Item item)
@@ -34,22 +35,45 @@ namespace Data
         
         public void SaveInventoryData()
         {
+           
             int j = 0;
-              invenData = new InventoryStruct[inventory.SlotList.Count];
-           // invenData = new Dictionary<int, InventoryStruct>();
-            for (int i = 0; i< inventory.SlotList.Count; i++)
+            invenData = new InventoryStruct[inventory.SlotList.Count];
+            for (int i = 0; i < inventory.SlotList.Count; i++)
             {
-                if(inventory.SlotList[i].ItemCode !=0)
+                if (inventory.SlotList[i].ItemCode != 0)
                 {
-                      invenData[j].index = i;
-                     invenData[j].itemCode = inventory.SlotList[i].ItemCode;
-                      invenData[j].itemCount = inventory.SlotList[i].ItemCount;
+                    invenData[j] = new InventoryStruct();
+                    invenData[j].index = i;
+                    invenData[j].itemCode = inventory.SlotList[i].ItemCode;
+                    invenData[j].itemCount = inventory.SlotList[i].ItemCount;
 
                     j++;
                 }
             }
 
-            JsonManager.Instance.OnClickSaveJSONBtn();
+            string toJson = JsonHelper.ToJson(invenData, prettyPrint: true);
+            
+            using (StreamWriter file = new StreamWriter(Application.dataPath + "/Json/InvenData.Json", false))
+            {
+                file.WriteLine(toJson);
+                Debug.Log(toJson);
+            }
+        }
+
+        public void LoadInventoryData()
+        {
+            string load = File.ReadAllText(Application.dataPath + "/Json/InvenData.Json");
+            var loadData = JsonHelper.FromJson<InventoryStruct>(load);
+
+            foreach (var loadItem in loadData)
+            {
+                if (loadItem.itemCount == 0)
+                    continue;
+                Debug.Log(loadItem.index);
+                inventory.SlotList[loadItem.index].LoadSlot(loadItem.itemCode, loadItem.itemCount);
+            }
+            
+            
         }
     }
 
