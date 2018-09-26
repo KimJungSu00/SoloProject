@@ -139,7 +139,6 @@ namespace UI.Presenter
 
         public void LoadSlot(int itemCode, int itemCount)   
         {
-            Debug.Log(itemCode);
             ItemCode = itemCode;
             ItemCount = itemCount;
             item = ItemController.Instance.GetItem(itemCode);

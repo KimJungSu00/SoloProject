@@ -1,0 +1,64 @@
+{
+    "CharacterName": "",
+    "Level": 0,
+    "Gold": 0,
+    "ItemList": [
+        {
+            "index": 0,
+            "itemCode": 100000,
+            "itemCount": 10
+        },
+        {
+            "index": 1,
+            "itemCode": 100001,
+            "itemCount": 10
+        },
+        {
+            "index": 2,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 3,
+            "itemCode": 100001,
+            "itemCount": 1
+        },
+        {
+            "index": 4,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 5,
+            "itemCode": 100000,
+            "itemCount": 7
+        },
+        {
+            "index": 6,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 8,
+            "itemCode": 100001,
+            "itemCount": 6
+        },
+        {
+            "index": 10,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 14,
+            "itemCode": 100000,
+            "itemCount": 10
+        },
+        {
+            "index": 19,
+            "itemCode": 200000,
+            "itemCount": 1
+        }
+    ],
+    "EquipList": [],
+    "SkillList": []
+}

@@ -35,7 +35,25 @@ namespace Data
         
         public void SaveInventoryData()
         {
-           
+            /*
+              int j = 0;
+              invenData = new InventoryStruct[inventory.SlotList.Count];
+              for (int i = 0; i < inventory.SlotList.Count; i++)
+              {
+                  if (inventory.SlotList[i].ItemCode != 0)
+                  {
+                      invenData[j] = new InventoryStruct();
+                      invenData[j].index = i;
+                      invenData[j].itemCode = inventory.SlotList[i].ItemCode;
+                      invenData[j].itemCount = inventory.SlotList[i].ItemCount;
+
+                      j++;
+                  }
+              }
+            
+            string toJson = JsonHelper.ToJson(invenData, prettyPrint: true);
+            */
+            CharacterData datas = new CharacterData();
             int j = 0;
             invenData = new InventoryStruct[inventory.SlotList.Count];
             for (int i = 0; i < inventory.SlotList.Count; i++)
@@ -46,14 +64,14 @@ namespace Data
                     invenData[j].index = i;
                     invenData[j].itemCode = inventory.SlotList[i].ItemCode;
                     invenData[j].itemCount = inventory.SlotList[i].ItemCount;
-
+                    datas.ItemList.Add(invenData[j]);
                     j++;
                 }
             }
 
-            string toJson = JsonHelper.ToJson(invenData, prettyPrint: true);
-            
-            using (StreamWriter file = new StreamWriter(Application.dataPath + "/Json/InvenData.Json", false))
+            string toJson = JsonUtility.ToJson(datas, prettyPrint: true);
+           // string toJson = JsonHelper.ToJson(invenData, prettyPrint: true);
+            using (StreamWriter file = new StreamWriter(Application.dataPath + "/Json/InvenData2.Json", false))
             {
                 file.WriteLine(toJson);
                 Debug.Log(toJson);
@@ -62,18 +80,22 @@ namespace Data
 
         public void LoadInventoryData()
         {
-            string load = File.ReadAllText(Application.dataPath + "/Json/InvenData.Json");
-            var loadData = JsonHelper.FromJson<InventoryStruct>(load);
-
+            string load = File.ReadAllText(Application.dataPath + "/Json/InvenData2.Json");
+            /*var loadData = JsonHelper.FromJson<InventoryStruct>(load);
+            
             foreach (var loadItem in loadData)
             {
                 if (loadItem.itemCount == 0)
                     continue;
-                Debug.Log(loadItem.index);
                 inventory.SlotList[loadItem.index].LoadSlot(loadItem.itemCode, loadItem.itemCount);
+            }*/
+            var loadData = JsonUtility.FromJson<CharacterData>(load);
+
+            foreach(var item in loadData.ItemList)
+            {
+                inventory.SlotList[item.index].LoadSlot(item.itemCode, item.itemCount);
             }
-            
-            
+
         }
     }
 
