@@ -6,9 +6,10 @@ using Data;
 
 public class AddItem : MonoBehaviour {
 
+   // [SerializeField]
+   // Inventory inventory;
     [SerializeField]
-    InventoryData inventory;
-
+    Test_Inventory inventory;
     public void Additem(int itemCode)
     {
         inventory.AddItem(ItemController.Instance.GetItem(itemCode));

@@ -11,6 +11,11 @@ namespace ItemGroup
         ItemType defaultItemType = ItemType.Default;
         Sprite defaltSprite;
 
+        [SerializeField]
+        int resourceItemCount = 99;
+        [SerializeField]
+        int consumeItemCount = 10;
+       
         public void GetItemInfo(int itemCode, out string name, out Sprite sprite, out ItemType itemType)
         {
             itemType = defaultItemType;
@@ -61,15 +66,19 @@ namespace ItemGroup
                 {
                     case "Resource":
                         item.ItemType = ItemType.Resource;
+                        item.ItemMaxCount = resourceItemCount;
                         break;
                     case "Consume":
                         item.ItemType = ItemType.Consume;
+                        item.ItemMaxCount = consumeItemCount;
                         break;
                     case "Equipment":
                         item.ItemType = ItemType.Equipment;
+                        item.ItemMaxCount = 1;
                         break;
                 }
                 item.Sprite = Resources.Load<Sprite>(itemTable.sheets[0].list[i].Sprite);
+
                 itemPool.Add(item);
             }
         }

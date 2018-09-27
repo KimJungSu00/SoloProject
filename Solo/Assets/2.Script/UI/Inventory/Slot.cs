@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace UI.Presenter
 {
 
-    public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler
+    public class Slot : MonoBehaviour,ISlotable, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
     {
 
         Inventory inventory;
@@ -24,9 +24,9 @@ namespace UI.Presenter
         public string ItemName { get; private set; }
         public bool IsEmpty;
 
-        public void Initialze(int maxItemCount, Sprite defaultSprite)
+        public void Initialze(Inventory inventory,int maxItemCount, Sprite defaultSprite)
         {
-            inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>();
+            this.inventory = inventory;
             slotImage = GetComponent<Image>();
             countText = GetComponentInChildren<Text>();
             dragObject = GameObject.FindGameObjectWithTag("DragItem");
@@ -90,7 +90,8 @@ namespace UI.Presenter
                 SlotUpdate();
             }
         }
-
+        
+        
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -145,6 +146,11 @@ namespace UI.Presenter
             if (ItemCount != 0)
                 IsEmpty = false;
             SlotUpdate();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            inventory.SelectSlot = this;
         }
     }
 }

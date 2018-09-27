@@ -5,7 +5,7 @@ using ItemGroup;
 namespace UI.Presenter
 {
 
-    public class EquipmentSlot : MonoBehaviour
+    public class EquipmentSlot : MonoBehaviour , ISlotable
     {
         
     }
