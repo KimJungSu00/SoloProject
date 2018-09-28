@@ -51,29 +51,29 @@ namespace UI.Presenter
             slotImage.sprite = item.Sprite;
             ItemName = item.Name;
             ItemType = item.ItemType;
-            ItemCode = item.CodeNum;
+            ItemCode = item.CodeNum;/*
             if (ItemType != ItemType.Equipment)
                 countText.text = ItemCount.ToString();
             else
-                countText.text = string.Empty;
+                countText.text = string.Empty;*/
         }
 
         public bool Additem(Item item)
         {
-            if (ItemName.Equals(item.Name) && !IsEmpty && ItemCount < maxItemCount && ItemType != ItemType.Equipment)
-            {
-                ItemCount++;
-                SlotUpdate();
-                return true;
-            }
-            if (IsEmpty)
-            {
-                this.item = item;
-                ItemCount++;
-                SlotUpdate();
-                IsEmpty = false;
-                return true;
-            }
+            /* if (ItemName.Equals(item.Name) && !IsEmpty && ItemCount < maxItemCount && ItemType != ItemType.Equipment)
+             {
+                 ItemCount++;
+                 SlotUpdate();
+                 return true;
+             }
+             if (IsEmpty)
+             {
+                 this.item = item;
+                 ItemCount++;
+                 SlotUpdate();
+                 IsEmpty = false;
+                 return true;
+             }*/
             return false;
         }
 

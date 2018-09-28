@@ -7,6 +7,7 @@ using System;
 using System.IO;
 namespace UI.Presenter
 {
+    
     [Serializable]
     public class InventoryStruct
     {

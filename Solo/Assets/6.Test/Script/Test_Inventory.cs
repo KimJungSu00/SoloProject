@@ -2,18 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ItemGroup;
+using System;
+using UI.Presenter;
+
 public enum SlotType
 {
+    Weapon,
+    Module,
+    Shield,
+    Consume,
     Inventory,
-    Equipment,
-    Quick,
 }
+
 
 public class Test_Inventory : MonoBehaviour
 {
-
-    public Test_Slot SelectSlot;
+    [SerializeField]
     List<Test_Slot> slotList = new List<Test_Slot>();
+
     [SerializeField]
     int rowCount;
     [SerializeField]
@@ -26,13 +32,16 @@ public class Test_Inventory : MonoBehaviour
         Initialize();
     }
 
-    
+
     bool Initialize()
     {
-        StartCoroutine(MakeInventorySlot());
-
+        if (type == SlotType.Inventory)
+            StartCoroutine(MakeInventorySlot());
+        else
+            StartCoroutine(InitializeInventory());
         return true;
     }
+
 
     IEnumerator MakeInventorySlot()
     {
@@ -43,14 +52,24 @@ public class Test_Inventory : MonoBehaviour
             slotList.Add(Instantiate(slot).GetComponent<Test_Slot>());
             slotList[i].transform.SetParent(transform, false);
             slotList[i].name = "Slot [" + i + "]";
-            slotList[i].Initialze(this, type,ItemController.Instance.GetItem(0));
+            slotList[i].Initialze(this, type, ItemController.Instance.GetItem(0));
+        }
+
+        yield return new WaitForEndOfFrame();
+    }
+    IEnumerator InitializeInventory()
+    {
+
+        foreach (Test_Slot slots in slotList)
+        {
+            slots.Initialze(this, type, ItemController.Instance.GetItem(0));
         }
         yield return new WaitForEndOfFrame();
     }
 
     public void AddItem(Item item)
     {
-        foreach(Test_Slot slot in slotList)
+        foreach (Test_Slot slot in slotList)
         {
             if (slot.AddItem(item))
                 return;

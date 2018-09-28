@@ -7,7 +7,9 @@ namespace ItemGroup
         Default,
         Resource,
         Consume,
-        Equipment,
+        Weapon,
+        Module,
+        Shield,
     }
 
     public class Item

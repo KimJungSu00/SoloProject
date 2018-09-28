@@ -28,6 +28,7 @@ namespace ItemGroup
                 if (itemTable.sheets[0].list[i].ID == itemCode)
                 {
                     name = itemTable.sheets[0].list[i].Name;
+                   
                     switch (itemTable.sheets[0].list[i].Type)
                     {
                         case "Resource":
@@ -36,8 +37,14 @@ namespace ItemGroup
                         case "Consume":
                             itemType = ItemType.Consume;
                             break;
-                        case "Equipment":
-                            itemType = ItemType.Equipment;
+                        case "Module":
+                            itemType = ItemType.Module;
+                            break;
+                        case "Weapon":
+                            itemType = ItemType.Weapon;
+                            break;
+                        case "Shield":
+                            itemType = ItemType.Shield;
                             break;
                     }
                     // sprite = AssetBundleManager.Instance.LoadSprite(itemTable.sheets[0].list[i].Sprite);
@@ -49,7 +56,7 @@ namespace ItemGroup
         }
 
 
-        void Start()
+        void Awake()
         {
             MakeItemPool();
         }
@@ -62,6 +69,7 @@ namespace ItemGroup
                 Item item = new Item();
                 item.CodeNum = itemTable.sheets[0].list[i].ID;
                 item.Name = itemTable.sheets[0].list[i].Name;
+                item.ItemMaxCount = 1;
                 switch (itemTable.sheets[0].list[i].Type)
                 {
                     case "Resource":
@@ -72,10 +80,29 @@ namespace ItemGroup
                         item.ItemType = ItemType.Consume;
                         item.ItemMaxCount = consumeItemCount;
                         break;
-                    case "Equipment":
-                        item.ItemType = ItemType.Equipment;
-                        item.ItemMaxCount = 1;
+                    case "Module":
+                        item.ItemType = ItemType.Module;
                         break;
+                    case "Weapon":
+                        item.ItemType = ItemType.Weapon;
+                        break;
+                    case "Shield":
+                        item.ItemType = ItemType.Shield;
+                        break;
+
+                        /*
+                        case "Resource":
+                            item.ItemType = ItemType.Resource;
+                            item.ItemMaxCount = resourceItemCount;
+                            break;
+                        case "Consume":
+                            item.ItemType = ItemType.Consume;
+                            item.ItemMaxCount = consumeItemCount;
+                            break;
+                        case "Equipment":
+                            item.ItemType = ItemType.Equipment;
+                            item.ItemMaxCount = 1;
+                            break;*/
                 }
                 item.Sprite = Resources.Load<Sprite>(itemTable.sheets[0].list[i].Sprite);
 
