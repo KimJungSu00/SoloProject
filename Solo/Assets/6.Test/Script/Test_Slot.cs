@@ -6,9 +6,10 @@ using ItemGroup;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UI.Presenter;
-
+public delegate void testingDG();
 public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
+    public testingDG DG;
     Test_Inventory inventory;
     Item item;
     SlotType type;
@@ -83,16 +84,23 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
     {
         if (eventData.button == PointerEventData.InputButton.Right && ItemCount != 0)
         {
-            ItemCount--;
-            if (ItemCount == 0)
-            {
-                item = ItemController.Instance.GetItem(0);
-                IsEmpty = true;
-            }
-            SlotUpdate();
+            
+            UseItem();
         }
     }
 
+    public void UseItem()
+    {
+        if(DG != null)
+        DG();
+        ItemCount--;
+        if (ItemCount == 0)
+        {
+            item = ItemController.Instance.GetItem(0);
+            IsEmpty = true;
+        }
+        SlotUpdate();
+    }
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left && item != null)
@@ -113,6 +121,8 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         if (eventData.button == PointerEventData.InputButton.Left && item != null)
         {
             SlotSwap(this, dragitem.slot);
+            SlotUpdate();
+            dragitem.slot.SlotUpdate();
             dragObject.SetActive(false);
         }
     }
@@ -124,7 +134,6 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         if (slotB.type == SlotType.Consume)
         {
             ConnectSlot(slotA, slotB);
-            slotB.SlotUpdate();
             return;
         }
         Item tempItem = new Item()
@@ -147,13 +156,14 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
         slotB.ItemCount = tempItemCount;
         slotB.IsEmpty = tempIsEmpty;
 
-        slotA.SlotUpdate();
-        slotB.SlotUpdate();
     }
 
-    public void ConnectSlot(Test_Slot slotA, Test_Slot slotB)
+    public void ConnectSlot(Test_Slot slotA,  Test_Slot slotB)
     {
-        slotB = slotA;
+        slotB.item = slotA.item;
+        slotA.DG = new testingDG(slotB.UseItem);
+        slotB.DG = new testingDG(slotA.UseItem);
+
        
     }
 
