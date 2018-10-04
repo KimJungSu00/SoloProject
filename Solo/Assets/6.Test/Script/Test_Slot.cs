@@ -5,11 +5,11 @@ using System;
 using ItemGroup;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UI.Presenter;
-public delegate void testingDG();
+using UI.Presenters;
+
 public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
-    public testingDG DG;
+   
     Test_Inventory inventory;
     Item item;
     SlotType type;
@@ -91,8 +91,7 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
 
     public void UseItem()
     {
-        if(DG != null)
-        DG();
+       
         ItemCount--;
         if (ItemCount == 0)
         {
@@ -160,10 +159,7 @@ public class Test_Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandle
 
     public void ConnectSlot(Test_Slot slotA,  Test_Slot slotB)
     {
-        slotB.item = slotA.item;
-        slotA.DG = new testingDG(slotB.UseItem);
-        slotB.DG = new testingDG(slotA.UseItem);
-
+        
        
     }
 

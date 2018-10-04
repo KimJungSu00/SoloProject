@@ -4,5 +4,11 @@ using UnityEngine;
 
 public class GameDataManager :Singleton<GameDataManager> {
 
-	
+    CharacterData characterData = new CharacterData();
+   
+    public void SaveData()
+    {
+        
+    }
+
 }
