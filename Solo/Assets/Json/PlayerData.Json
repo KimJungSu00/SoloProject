@@ -1,0 +1,169 @@
+{
+    "CharacterName": "",
+    "Level": 0,
+    "Gold": 0,
+    "ItemList": [
+        {
+            "index": 0,
+            "itemCode": 100000,
+            "itemCount": 10
+        },
+        {
+            "index": 1,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 2,
+            "itemCode": 200000,
+            "itemCount": 1
+        },
+        {
+            "index": 3,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 4,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 5,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 6,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 7,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 8,
+            "itemCode": 100000,
+            "itemCount": 10
+        },
+        {
+            "index": 9,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 10,
+            "itemCode": 100001,
+            "itemCount": 8
+        },
+        {
+            "index": 11,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 12,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 13,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 14,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 15,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 16,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 17,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 18,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 19,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 20,
+            "itemCode": 0,
+            "itemCount": 0
+        }
+    ],
+    "ModuleList": [
+        {
+            "index": 0,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 1,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 2,
+            "itemCode": 0,
+            "itemCount": 0
+        }
+    ],
+    "ShieldList": [
+        {
+            "index": 0,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 1,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 2,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 3,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 4,
+            "itemCode": 0,
+            "itemCount": 0
+        },
+        {
+            "index": 5,
+            "itemCode": 0,
+            "itemCount": 0
+        }
+    ],
+    "WeaponList": [
+        {
+            "index": 0,
+            "itemCode": 0,
+            "itemCount": 0
+        }
+    ],
+    "SkillList": []
+}

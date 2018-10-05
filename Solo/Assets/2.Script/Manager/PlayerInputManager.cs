@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace SideScroll.Manager
-{
+
     public class PlayerInputManager : Singleton<PlayerInputManager>
     {
 
@@ -68,4 +67,3 @@ namespace SideScroll.Manager
 
     }
 
-}

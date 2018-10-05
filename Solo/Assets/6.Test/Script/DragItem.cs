@@ -6,7 +6,6 @@ namespace UI.Presenters
     public class DragItem : MonoBehaviour
     {
         public Image DragImage;
-        public Test_Slot slot;
-        public Slot slot2;
+        public Slot slot;
     }
 }

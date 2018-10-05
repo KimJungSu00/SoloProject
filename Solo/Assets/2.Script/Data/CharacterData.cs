@@ -10,6 +10,8 @@ public class CharacterData
     public int Level;
     public int Gold;
     public List<InventoryStruct> ItemList = new List<InventoryStruct>();
-    public List<InventoryStruct> EquipList = new List<InventoryStruct>();
-    public List<InventoryStruct> SkillList= new List<InventoryStruct>();
+    public List<InventoryStruct> ModuleList = new List<InventoryStruct>();
+    public List<InventoryStruct> ShieldList = new List<InventoryStruct>();
+    public List<InventoryStruct> WeaponList = new List<InventoryStruct>();
+    public List<InventoryStruct> SkillList = new List<InventoryStruct>();
 }

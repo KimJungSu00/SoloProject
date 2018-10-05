@@ -9,9 +9,19 @@ public class AddItem : MonoBehaviour {
    // [SerializeField]
    // Inventory inventory;
     [SerializeField]
-    Test_Inventory inventory;
+    IInventory inventory;
     public void Additem(int itemCode)
     {
         inventory.AddItem(ItemController.Instance.GetItem(itemCode));
+    }
+
+    public void Save()
+    {
+        GameDataManager.Instance.SaveData();
+    }
+
+    public void Load()
+    {
+        GameDataManager.Instance.LoadData();
     }
 }

@@ -8,30 +8,44 @@ using UI.Presenter;
 using ItemGroup;
 
 
+public enum SlotType
+{
+    Weapon,
+    Module,
+    Shield,
+    Inventory,
+    Consume,
+}
 
 public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IDragHandler, IPointerEnterHandler
 {
 
-    protected IInventory inventory;
-    protected Item item;
-    protected SlotType type;
-    protected Image slotImage;
-    protected Text countText;
-    protected GameObject dragObject; 
-    protected DragItem dragItem;
-    
+    IInventory inventory;
+    Item item;
+    SlotType type;
+    Image slotImage;
+    Text countText;
+    GameObject dragObject;
+    DragItem dragItem;
+
+    public int index;
     public int ItemCount { get; protected set; }
     public bool IsEmpty { get; protected set; }
 
-    public void Initialize(IInventory inven, SlotType invenType,Item item)
+    public void Initialize(IInventory inven, SlotType invenType, Item item, int index)
     {
         inventory = inven;
         type = invenType;
         this.item = item;
+        this.index = index;
+        IsEmpty = true;
         dragObject = GameObject.FindGameObjectWithTag("DragItem");
         dragItem = dragObject.GetComponent<DragItem>();
         slotImage = GetComponent<Image>();
-        countText = GetComponentInChildren<Text>(); 
+        countText = GetComponentInChildren<Text>();
+
+        slotImage.sprite = item.Sprite;
+        GameDataManager.Instance.AddData(index, item.CodeNum, ItemCount,type);
     }
 
     void SlotUpdate()
@@ -44,8 +58,18 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         countText.text = string.Empty;
         if (item.ItemType == ItemType.Consume || item.ItemType == ItemType.Resource)
             countText.text = ItemCount.ToString();
+
+        
+            GameDataManager.Instance.UpdateData(index,item.CodeNum,ItemCount,type);
+        
     }
 
+    public void LoadItem(Item item,int count)
+    {
+        this.item = item;
+        ItemCount = count;
+        SlotUpdate();
+    }
     public bool AddItem(Item item)
     {
         if (this.item.Name.Equals(item.Name) && !IsEmpty
@@ -84,11 +108,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         if (!CheckSwapable(slotA, slotB))
             return;
-        if (slotB.type == SlotType.Consume)
-        {
-            ConnectSlot(slotA, slotB);
-            return;
-        }
+        
         Item tempItem = new Item()
         {
             CodeNum = slotA.item.CodeNum,
@@ -121,7 +141,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         if (slotA.type == slotB.type)
             return true;
-        if (slotB.type == SlotType.Inventory && slotA.item.ItemType == slotB.item.ItemType)
+        if (slotB.type == SlotType.Inventory )
             return true;
         if (slotA.item.ItemType.ToString().Equals(slotB.type.ToString()))
         {
@@ -158,16 +178,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        dragItem.slot2 = this;
+        dragItem.slot = this;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left && item != null)
         {
-            SlotSwap(this, dragItem.slot2);
+            SlotSwap(this, dragItem.slot);
             SlotUpdate();
-            dragItem.slot2.SlotUpdate();
+            dragItem.slot.SlotUpdate();
             dragObject.SetActive(false);
         }
     }
