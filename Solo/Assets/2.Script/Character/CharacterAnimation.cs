@@ -9,6 +9,7 @@ public class CharacterAnimation : MonoBehaviour {
     bool isWalk;
     bool isAttack;
     bool isRun;
+    bool isJump;
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
@@ -21,7 +22,7 @@ public class CharacterAnimation : MonoBehaviour {
         PlayWalkAnimation();
         PlayAttackAnimation();
         PlayRunAnimation();
-
+        PlayerJumpAnimation();
     }
 
     void PlayWalkAnimation()
@@ -47,6 +48,13 @@ public class CharacterAnimation : MonoBehaviour {
         {
             isAttack = state.isAttack;
             animator.SetBool("isAttack", isAttack);
+        }
+    }
+    void PlayerJumpAnimation()
+    {
+        if(PlayerInputManager.Instance.JumpButton())
+        { 
+             animator.SetTrigger("isJump");
         }
     }
 

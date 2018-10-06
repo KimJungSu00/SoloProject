@@ -31,7 +31,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     public int index;
     public int ItemCount { get; protected set; }
     public bool IsEmpty { get; protected set; }
-
+    public int ItemCode { get { return item.CodeNum; } private set { } }
     public void Initialize(IInventory inven, SlotType invenType, Item item, int index)
     {
         inventory = inven;
@@ -104,7 +104,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         SlotUpdate();
     }
 
-    void SlotSwap(Slot slotA, Slot slotB)
+    public void SlotSwap(Slot slotA, Slot slotB)
     {
         if (!CheckSwapable(slotA, slotB))
             return;
@@ -120,6 +120,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
 
         int tempItemCount = slotA.ItemCount;
         bool tempIsEmpty = slotA.IsEmpty;
+        int tempIndex = slotA.index;
 
         slotA.item = slotB.item;
         slotA.ItemCount = slotB.ItemCount;
@@ -129,13 +130,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         slotB.ItemCount = tempItemCount;
         slotB.IsEmpty = tempIsEmpty;
 
+
+        slotA.SlotUpdate();
+        slotB.SlotUpdate();
+        GameDataManager.Instance.LoadData();
     }
 
-    public void ConnectSlot(Slot slotA, Slot slotB)
-    {
-
-
-    }
 
     bool CheckSwapable(Slot slotA, Slot slotB)
     {
@@ -186,8 +186,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         if (eventData.button == PointerEventData.InputButton.Left && item != null)
         {
             SlotSwap(this, dragItem.slot);
-            SlotUpdate();
-            dragItem.slot.SlotUpdate();
             dragObject.SetActive(false);
         }
     }

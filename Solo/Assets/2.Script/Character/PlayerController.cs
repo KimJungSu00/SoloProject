@@ -5,17 +5,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
     float moveSpeed;
     [SerializeField]
     float walkSpeed;
     [SerializeField]
     float runSpeed;
-    
+    [SerializeField]
+    float jumpPower;
+    [SerializeField]
+    float gravityPower;
     Status status;
 
     Rigidbody rigidBody;
-   
+
+    bool isGrounded = true;
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
@@ -25,37 +28,13 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-    bool right = true;
+
+    Vector3 velocity = Vector3.zero;
+    Vector3 direction = Vector3.zero;
     void Move()
-    {/*
-            Vector3 direction = new Vector3(MoveInput.x, 0, MoveInput.y);
-            direction = Quaternion.Euler(0, horizontalAngle, 0) * direction;
-            if (MoveInput == Vector2.zero || status.isAttack)
-            {
-                status.isWalk = false;
-                return;
-            }
+    {
+        direction = new Vector3(PlayerInputManager.Instance.InputArrow().x, 0, PlayerInputManager.Instance.InputArrow().z);
 
-            status.isWalk = true;
-            rigidBody.velocity = direction * MoveSpeed * Time.deltaTime;
-            Quaternion newRotation = Quaternion.LookRotation(direction);
-            rigidBody.rotation = Quaternion.Slerp(rigidBody.rotation, newRotation, RotationSpeed * Time.deltaTime);
-            */
-        Vector3 gravity = new Vector3(0, -1.8f, 0);
-
-        Vector3 direction = new Vector3(PlayerInputManager.Instance.InputArrow().x,0, PlayerInputManager.Instance.InputArrow().z);
-        if (direction == Vector3.zero || status.isAttack)
-        {
-            status.isWalk = false;
-            status.isRun = false;
-            return;
-        }
-        if (direction.z <0)
-        {
-            rigidBody.rotation = Quaternion.Euler(new Vector3(0, 180));
-        }
-        else
-            rigidBody.rotation = Quaternion.Euler(new Vector3(0, 0));
         if (PlayerInputManager.Instance.InputArrow().y == 1)
         {
             moveSpeed = runSpeed;
@@ -66,8 +45,48 @@ public class PlayerController : MonoBehaviour
             moveSpeed = walkSpeed;
             status.isWalk = true;
         }
-        rigidBody.velocity = direction * moveSpeed * Time.deltaTime;
+        velocity = direction * moveSpeed;
+        if (!isGrounded)
+            velocity += Vector3.down * gravityPower;
+        
+        if (velocity == new Vector3(0, velocity.y, 0) || status.isAttack)
+        {
+            status.isWalk = false;
+            status.isRun = false;
+            return;
+        }
+        
+        if (velocity.z < 0)
+        {
+            rigidBody.rotation = Quaternion.Euler(new Vector3(0, 180));
+        }
+        else
+            rigidBody.rotation = Quaternion.Euler(new Vector3(0, 0));
+
+
+
+        rigidBody.velocity = velocity * Time.deltaTime;
 
     }
 
+    
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+            isGrounded = false;
+
+    }
+
+
 }
+

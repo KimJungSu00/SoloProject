@@ -9,10 +9,13 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     float lastTapTime;
     float tapSpeed = 0.5f;
 
-    int run = 0;
+    int run;
     float latency;
     bool doubleClick = false;
     float time;
+
+    
+
     public Vector3 InputArrow()
     {
         int left = 0;
@@ -33,7 +36,6 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         {
             doubleClick = false;
             run = 0;
-            //  Debug.Log("달리기 종료");
         }
 
 
@@ -43,7 +45,9 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     bool CheckArrowDoubleClick()
     {
         bool doubleclick = false;
-
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            return true;
+        
         if (Input.GetKeyDown(KeyCode.LeftArrow) && !doubleClick)
         {
             doubleClick = true;
@@ -63,6 +67,25 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         return doubleclick;
     }
 
+    public bool AttackButton()
+    {
+        if(Input.GetKey(KeyCode.Z))
+        {
+            return true;
+        }
 
+        return false;
+    }
+
+    public bool JumpButton()
+    {
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            return true;
+        }
+
+        return false;
+    }
 }
 

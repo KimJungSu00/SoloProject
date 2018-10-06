@@ -21,6 +21,10 @@ public class ItemTable : ScriptableObject
 		public string Name;
 		public string Type;
 		public string Sprite;
+		public int HP;
+		public int MP;
+		public int ATD;
+		public int DEF;
 	}
 }
 

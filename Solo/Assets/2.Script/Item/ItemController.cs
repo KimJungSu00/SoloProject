@@ -105,6 +105,10 @@ namespace ItemGroup
                             item.ItemMaxCount = 1;
                             break;*/
                 }
+                item.HP = itemTable.sheets[0].list[i].HP;
+                item.MP = itemTable.sheets[0].list[i].MP;
+                item.AttackPower = itemTable.sheets[0].list[i].ATD;
+                item.DefencePower = itemTable.sheets[0].list[i].DEF;
                 item.Sprite = Resources.Load<Sprite>(itemTable.sheets[0].list[i].Sprite);
 
                 itemPool.Add(item);

@@ -19,6 +19,11 @@ namespace ItemGroup
         public ItemType ItemType;
         public int ItemMaxCount;
         public Sprite Sprite;
+        public int HP;
+        public int MP;
+        public int AttackPower;
+        public int DefencePower;
+
         public Item()
         {
             CodeNum = 0;

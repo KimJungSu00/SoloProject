@@ -12,7 +12,8 @@ public class InventoryStruct
     public int itemCode;
     public int itemCount;
 }
-public class IInventory : MonoBehaviour {
+public class IInventory : MonoBehaviour
+{
 
     [SerializeField]
     public List<Slot> slotList = new List<Slot>();
@@ -29,7 +30,7 @@ public class IInventory : MonoBehaviour {
         Initialize();
         GameDataManager.Instance.LoadEvent += new EventHandler(LoadData);
     }
-    
+
 
     bool Initialize()
     {
@@ -50,7 +51,7 @@ public class IInventory : MonoBehaviour {
             slotList.Add(Instantiate(slot).GetComponent<Slot>());
             slotList[i].transform.SetParent(transform, false);
             slotList[i].name = "Slot [" + i + "]";
-            slotList[i].Initialize(this, type, ItemController.Instance.GetItem(0),i);
+            slotList[i].Initialize(this, type, ItemController.Instance.GetItem(0), i);
         }
 
         yield return new WaitForEndOfFrame();
@@ -60,7 +61,7 @@ public class IInventory : MonoBehaviour {
         int index = 0;
         foreach (Slot slots in slotList)
         {
-            slots.Initialize(this, type, ItemController.Instance.GetItem(0),index);
+            slots.Initialize(this, type, ItemController.Instance.GetItem(0), index);
             index++;
         }
         yield return new WaitForEndOfFrame();
@@ -77,30 +78,73 @@ public class IInventory : MonoBehaviour {
 
     public void LoadData(object sender, EventArgs e)
     {
-        string loadData = File.ReadAllText(Application.dataPath + "/Json/PlayerData.Json");
 
-        var fromJson = JsonUtility.FromJson<CharacterData>(loadData);
         List<InventoryStruct> loadList = null;
         switch (type)
         {
             case SlotType.Weapon:
-                loadList = fromJson.WeaponList;
+                loadList = GameDataManager.Instance.characterData.WeaponList;
                 break;
             case SlotType.Module:
-                loadList = fromJson.ModuleList;
+                loadList = GameDataManager.Instance.characterData.ModuleList;
                 break;
             case SlotType.Shield:
-                loadList = fromJson.ShieldList;
+                loadList = GameDataManager.Instance.characterData.ShieldList;
                 break;
             case SlotType.Inventory:
-                loadList = fromJson.ItemList;
-                break;           
+                loadList = GameDataManager.Instance.characterData.ItemList;
+                break;
         }
-        if(loadList!=null)
-        foreach(InventoryStruct slot in loadList)
+        if (loadList != null)
+            foreach (InventoryStruct slot in loadList)
+            {
+                if (slot.itemCode == 0)
+                    continue;
+                slotList[slot.index].LoadItem(ItemController.Instance.GetItem(slot.itemCode), slot.itemCount);
+            }
+    }
+
+    public void SortSlot()
+    {
+        QuickSort(slotList, 0, slotList.Count - 1);
+
+    }
+
+    void QuickSort(List<Slot> slotList, int start, int end)
+    {
+        int pivot = 0;
+        if (start < end)
         {
-            slotList[slot.index].LoadItem(ItemController.Instance.GetItem(slot.itemCode), slot.itemCount);
+            pivot = PartitionQuciSort(slotList, start, end);
+            QuickSort(slotList, start, pivot - 1);
+            QuickSort(slotList, pivot + 1, end);
         }
+    }
+
+    int PartitionQuciSort(List<Slot> slotList, int start, int end)
+    {
+        int pivot = end;
+        int right = end;
+        int left = start;
+
+        while (left < right)
+        {
+            while ((slotList[left].ItemCode >= slotList[pivot].ItemCode) && (left < right))
+            {
+                left++;
+            }
+            while ((slotList[right].ItemCode < slotList[pivot].ItemCode) && (left < right))
+            {
+                right--;
+            }
+            if (left < right)
+            {
+                slotList[left].SlotSwap(slotList[left], slotList[right]);
+            }
+        }
+        slotList[right].SlotSwap(slotList[pivot], slotList[right]);
+
+        return right;
     }
 
 }

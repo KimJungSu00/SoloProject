@@ -13,5 +13,5 @@ public class CharacterData
     public List<InventoryStruct> ModuleList = new List<InventoryStruct>();
     public List<InventoryStruct> ShieldList = new List<InventoryStruct>();
     public List<InventoryStruct> WeaponList = new List<InventoryStruct>();
-    public List<InventoryStruct> SkillList = new List<InventoryStruct>();
+   // public List<InventoryStruct> SkillList = new List<InventoryStruct>();
 }

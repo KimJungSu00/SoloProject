@@ -54,6 +54,10 @@ public class ItemMonsterTable_importer : AssetPostprocessor {
 					cell = row.GetCell(1); p.Name = (cell == null ? "" : cell.StringCellValue);
 					cell = row.GetCell(2); p.Type = (cell == null ? "" : cell.StringCellValue);
 					cell = row.GetCell(3); p.Sprite = (cell == null ? "" : cell.StringCellValue);
+					cell = row.GetCell(4); p.HP = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(5); p.MP = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(6); p.ATD = (int)(cell == null ? 0 : cell.NumericCellValue);
+					cell = row.GetCell(7); p.DEF = (int)(cell == null ? 0 : cell.NumericCellValue);
 						s.list.Add (p);
 					}
 					data.sheets.Add(s);
