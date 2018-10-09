@@ -5,16 +5,22 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour {
 
     Animator animator;
-    Status state;
+    PlayerController state;
+    [SerializeField]
+    AnimatorStateInfo test;
+    
+
     bool isWalk;
     bool isAttack;
     bool isRun;
     bool isJump;
+    bool isDeath;
+
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator>();
-        state = GetComponent<Status>();
-       
+        state = GetComponent<PlayerController>();
+        
 	}
 	
 	// Update is called once per frame
@@ -23,6 +29,7 @@ public class CharacterAnimation : MonoBehaviour {
         PlayAttackAnimation();
         PlayRunAnimation();
         PlayerJumpAnimation();
+        PlayerDeathAnimation();
     }
 
     void PlayWalkAnimation()
@@ -44,10 +51,15 @@ public class CharacterAnimation : MonoBehaviour {
 
     void PlayAttackAnimation()
     {
-        if (isAttack != state.isAttack)
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1")&& PlayerInputManager.Instance.AttackButton())
         {
-            isAttack = state.isAttack;
-            animator.SetBool("isAttack", isAttack);
+            animator.SetTrigger("isCombo");
+            return;
+        }
+        if (PlayerInputManager.Instance.AttackButton())
+        {
+            animator.SetTrigger("isAttack");
         }
     }
     void PlayerJumpAnimation()
@@ -57,5 +69,18 @@ public class CharacterAnimation : MonoBehaviour {
              animator.SetTrigger("isJump");
         }
     }
+
+    void PlayerDeathAnimation()
+    {
+        if(!state.isAlive && !isDeath)
+        {
+            int index = Random.Range(0, 10);
+            index = index % 2;
+            animator.SetTrigger("isDie" + index.ToString());
+            isDeath = true;
+        }
+    }
+
+   
 
 }

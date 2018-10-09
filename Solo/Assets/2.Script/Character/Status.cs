@@ -7,11 +7,8 @@ using System;
 public class Status : MonoBehaviour
 {
 
-    [Header("1차 능력치")]
-    [ReadOnly, SerializeField, Tooltip("HP : 생명력")]
-    private int healthPoint;
-    [ReadOnly, SerializeField, Tooltip("MP : 마법력")]
-    private float manaPoint;
+    public int HealthPoint { get; private set; }
+    public float ManaPoint { get; private set; }
     [ReadOnly, SerializeField, Tooltip("STR : 공격력")]
     private int strikingPower;
     [ReadOnly, SerializeField, Tooltip("DEF : 방어력")]
@@ -40,14 +37,8 @@ public class Status : MonoBehaviour
     [ReadOnly]
     public int MP;
 
-    //Animator State
-
-    [HideInInspector]
-    public bool isWalk;
-    [HideInInspector]
-    public bool isAttack;
-    [HideInInspector]
-    public bool isRun;
+    
+    
     private void Start()
     {
         GameDataManager.Instance.LoadEvent += new EventHandler(LoadData);
@@ -60,9 +51,9 @@ public class Status : MonoBehaviour
     }
     public void UpdateRawState()
     {
-        GameDataManager.Instance.LoadEquipmentStatus(out HP, out MP, out AttackDamage, out Armor);
-        healthPoint = (Strength * 10)+ HP;
-        manaPoint = (Intelligence * 10)+MP;
+     //   GameDataManager.Instance.LoadEquipmentStatus(out HP, out MP, out AttackDamage, out Armor);
+        HealthPoint = (Strength * 10)+ HP;
+        ManaPoint = (Intelligence * 10)+MP;
         strikingPower = Strength + AttackDamage;
         defensivePower = Will + Armor;
     }

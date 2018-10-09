@@ -69,7 +69,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
     public bool AttackButton()
     {
-        if(Input.GetKey(KeyCode.Z))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             return true;
         }

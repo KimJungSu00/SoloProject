@@ -16,6 +16,16 @@ public class PlayerController : MonoBehaviour
     float gravityPower;
     Status status;
 
+
+    //Animator State
+    [HideInInspector]
+    public bool isWalk;
+    [HideInInspector]
+    public bool isAttack;
+    [HideInInspector]
+    public bool isRun;
+    
+    public bool isAlive = true;
     Rigidbody rigidBody;
 
     bool isGrounded = true;
@@ -26,7 +36,11 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Move();
+        if (isAlive)
+        {
+            Move();
+            StartDeath();
+        }
     }
 
     Vector3 velocity = Vector3.zero;
@@ -38,21 +52,21 @@ public class PlayerController : MonoBehaviour
         if (PlayerInputManager.Instance.InputArrow().y == 1)
         {
             moveSpeed = runSpeed;
-            status.isRun = true;
+            isRun = true;
         }
         else
         {
             moveSpeed = walkSpeed;
-            status.isWalk = true;
+            isWalk = true;
         }
         velocity = direction * moveSpeed;
         if (!isGrounded)
             velocity += Vector3.down * gravityPower;
         
-        if (velocity == new Vector3(0, velocity.y, 0) || status.isAttack)
+        if (velocity == new Vector3(0, velocity.y, 0) || isAttack)
         {
-            status.isWalk = false;
-            status.isRun = false;
+            isWalk = false;
+            isRun = false;
             return;
         }
         
@@ -70,7 +84,9 @@ public class PlayerController : MonoBehaviour
     }
 
     
+    
 
+   
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -84,9 +100,23 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
             isGrounded = false;
-
     }
 
-
+    void StartAttack()
+    {
+        isAttack = true;
+    }
+    void EndAttack()
+    {
+        isAttack = false;
+    }
+    void StartDeath()
+    {
+        if(status.HealthPoint<=0)
+        {
+            isAlive = false;
+        }
+        
+    }
 }
 
