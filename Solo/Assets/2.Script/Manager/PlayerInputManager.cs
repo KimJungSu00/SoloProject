@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 public class PlayerInputManager : Singleton<PlayerInputManager>
 {
@@ -14,7 +14,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     bool doubleClick = false;
     float time;
 
-    
+  
 
     public Vector3 InputArrow()
     {
@@ -87,5 +87,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
         return false;
     }
+
+    
 }
 
