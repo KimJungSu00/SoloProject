@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System;
 using UI.Presenter;
-using Data;
 
 [Serializable]
 public class CharacterData

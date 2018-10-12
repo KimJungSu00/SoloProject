@@ -67,6 +67,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
     {
         this.item = item;
         ItemCount = count;
+        IsEmpty = false;
         SlotUpdate();
     }
     public bool AddItem(Item item)
@@ -91,9 +92,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IP
         }
         return false;
     }
-    void UseItem()
+    public void UseItem()
     {
-
+        if (ItemCount == 0)
+            return;
         ItemCount--;
         if (ItemCount == 0)
         {

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class PlayerInputManager : Singleton<PlayerInputManager>
 {
@@ -13,9 +12,13 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     float latency;
     bool doubleClick = false;
     float time;
+    [SerializeField]
+    QuickInventory Quickslot;
 
-  
-
+    private void Update()
+    {
+        UseQuickSlot();
+    }
     public Vector3 InputArrow()
     {
         int left = 0;
@@ -88,6 +91,33 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
         return false;
     }
 
+    void UseQuickSlot()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Quickslot.UseItem(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Quickslot.UseItem(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Quickslot.UseItem(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Quickslot.UseItem(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Quickslot.UseItem(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            Quickslot.UseItem(6);
+        }
+    }
     
 }
 
