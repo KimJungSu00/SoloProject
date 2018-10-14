@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     float runSpeed;
     [SerializeField]
-    float jumpPower;
-    [SerializeField]
     float gravityPower;
     Status status;
 

@@ -7,11 +7,10 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
 
     float lastTapTime;
     float tapSpeed = 0.5f;
-
     int run;
+
     float latency;
     bool doubleClick = false;
-    float time;
     [SerializeField]
     QuickInventory Quickslot;
 
@@ -23,7 +22,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager>
     {
         int left = 0;
         int up = 0;
-
+        
         if (Input.GetKey(KeyCode.LeftArrow))
             left = -1;
         if (Input.GetKey(KeyCode.RightArrow))
