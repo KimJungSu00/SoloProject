@@ -27,4 +27,19 @@ public class Test_InputManager : Singleton<Test_InputManager>
         else
             return false;
     }
+
+    public bool OnClickedJumpButton()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+            return true;
+
+        return false;
+    }
+
+    public bool OnClickedAttackButton()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+            return true;
+        return false;
+    }
 }

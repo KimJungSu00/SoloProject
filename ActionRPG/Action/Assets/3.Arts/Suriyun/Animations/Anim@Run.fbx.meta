@@ -376,14 +376,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
       copied configuration does not match position in animation file:\n\t'Hip_L' :
-      position error = 10.274498 mm\n\t'Ankle_L' : position error = 1.996447 mm\n"
+      position error = 10.547441 mm\n\t'Ankle_L' : position error = 2.049482 mm\n"
     animationImportErrors: 
     animationImportWarnings: "\nClip 'Anim@Run' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar to
-      improve retargeting quality.\n\t'RootPart1_M' is inbetween humanoid transforms
-      and has rotation animation that will be discarded.\n\t'Scapula_R' has translation
-      animation that will be discarded.\n\t'Scapula_L' has translation animation that
-      will be discarded.\n"
+      improve retargeting quality.\n\t'Scapula_R' has translation animation that will
+      be discarded.\n\t'Scapula_L' has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 3
@@ -410,9 +408,9 @@ ModelImporter:
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 1
-      keepOriginalPositionY: 1
+      keepOriginalPositionY: 0
       keepOriginalPositionXZ: 1
-      heightFromFeet: 0
+      heightFromFeet: 1
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []

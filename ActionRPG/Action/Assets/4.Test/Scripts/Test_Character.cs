@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Test_Character : MonoBehaviour {
+public abstract class Test_Character : MonoBehaviour
+{
 
-	public int HealthPoiont { get; protected set; }
+    public int HealthPoiont { get; protected set; }
     public int ManaPoint { get; protected set; }
 
     protected int totalStrikingPower;
@@ -20,15 +21,23 @@ public abstract class Test_Character : MonoBehaviour {
     protected int will;
 
     protected Rigidbody rigidbody;
+
+    protected bool isGround;
     [SerializeField]
-    bool isGround;
-    
+    protected float gravityPower;
+
     protected float moveSpeed;
     [SerializeField]
     protected float walkSpeed;
     [SerializeField]
     protected float runSpeed;
 
+    protected Vector3 velocity = Vector3.zero;
+    protected Vector3 direction = Vector3.zero;
+
+    public bool IsWalk { get; protected set; }
+    public bool IsRun { get; protected set; }
+    public bool IsAttack { get; protected set; }
 
     private void Start()
     {

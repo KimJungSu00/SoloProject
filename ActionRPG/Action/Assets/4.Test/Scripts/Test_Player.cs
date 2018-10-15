@@ -15,36 +15,44 @@ public class Test_Player : Test_Character
 
     private void FixedUpdate()
     {
-        
-        Move();
-        Rotate();
+            Move();
+            Rotate();
     }
 
-    Vector3 velocity = Vector3.zero;
-    Vector3 direction = Vector3.zero;
 
-    bool isRun;
     protected override void Move()
     {
-        direction = Test_InputManager.Instance.OnclickedArrowButton(); 
-        
-        if(Test_InputManager.Instance.OnClickedRunButton())
+        direction = Test_InputManager.Instance.OnclickedArrowButton();
+
+        if (Test_InputManager.Instance.OnClickedRunButton())
         {
             moveSpeed = runSpeed;
-            isRun = true;
+            IsWalk = false;
+            IsRun = true;
         }
         else
         {
             moveSpeed = walkSpeed;
-            isRun = false;
+            IsRun = false;
+            IsWalk = true;     
+        }
+        if(direction == Vector3.zero || IsAttack)
+        {
+            IsRun = false;
+            IsWalk = false;
+            moveSpeed = 0;
         }
         velocity = direction * moveSpeed;
+        if (!isGround)
+        {
+            velocity += Vector3.down * gravityPower;
+        }
         rigidbody.velocity = velocity * Time.deltaTime;
     }
 
     protected void Rotate()
     {
-        if (direction == Vector3.zero)
+        if (direction == Vector3.zero || IsAttack)
             return;
         if (direction.z < 0)
         {
@@ -55,4 +63,15 @@ public class Test_Player : Test_Character
             rigidbody.rotation = Quaternion.Euler(new Vector3(0, 0));
         }
     }
+
+    void StartAttack()
+    {
+        IsAttack = true;
+    }
+
+    void EndAttack()
+    {
+        IsAttack = false;
+    }
+
 }
