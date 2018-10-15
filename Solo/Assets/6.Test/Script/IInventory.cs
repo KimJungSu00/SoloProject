@@ -17,7 +17,6 @@ public class IInventory : MonoBehaviour
 
     [SerializeField]
     public List<Slot> slotList = new List<Slot>();
-
     [SerializeField]
     int rowCount;
     [SerializeField]

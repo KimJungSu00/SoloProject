@@ -6,25 +6,39 @@ using UnityEngine.EventSystems;
 
 public class Test_Slot : MonoBehaviour , IBeginDragHandler, IDragHandler, IDropHandler {
 
-    public GameObject DragItem;
+    GameObject DragItemObject;
+    DragItem drag;
+
     public Test_Slot slot;
     public Transform item;
+
+    private void Start()
+    {
+        DragItemObject = GameObject.FindGameObjectWithTag("DragItem");
+        drag = DragItemObject.GetComponent<DragItem>();
+        
+        
+        slot = this;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        transform.GetChild(0).SetParent(DragItem.transform);
+        drag.preSlot = gameObject;
+        transform.GetChild(0).SetParent(DragItemObject.transform);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            DragItem.transform.position = Input.mousePosition;
+            DragItemObject.transform.position = Input.mousePosition;
         }
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        DragItem.transform.GetChild(0).SetParent(gameObject.transform,false);
+        gameObject.transform.GetChild(0).SetParent(drag.preSlot.transform);
+        DragItemObject.transform.GetChild(0).SetParent(gameObject.transform);
+        
     }
 
     
