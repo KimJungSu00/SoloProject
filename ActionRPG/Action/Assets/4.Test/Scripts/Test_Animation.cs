@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Test_Animation : MonoBehaviour
+namespace Test
 {
-
-    [SerializeField]
-    Animator animator;
-
-    [SerializeField]
-    Test_Character character;
-
-
-    private void Update()
+    public class Test_Animation : MonoBehaviour
     {
-        WalkAnimation();
-        JupmAnimation();
-        AttackAnimation();
-    }
 
-    void WalkAnimation()
-    {
-        animator.SetBool("Walk", character.IsWalk);
-        animator.SetBool("Run", character.IsRun);
-    }
-    void JupmAnimation()
-    {
-        if (Test_InputManager.Instance.OnClickedJumpButton())
-            animator.SetTrigger("Jump");
-    }
+        [SerializeField]
+        Animator animator;
 
-    void AttackAnimation()
-    {
-        if (Test_InputManager.Instance.OnClickedAttackButton())
-            animator.SetTrigger("Attack");
+        [SerializeField]
+        Test_Character character;
+
+
+        private void Update()
+        {
+            WalkAnimation();
+            JupmAnimation();
+            AttackAnimation();
+        }
+
+        void WalkAnimation()
+        {
+            animator.SetBool("Walk", character.IsWalk);
+            animator.SetBool("Run", character.IsRun);
+        }
+        void JupmAnimation()
+        {
+            if (Test_InputManager.Instance.OnClickedJumpButton())
+                animator.SetTrigger("Jump");
+        }
+
+        void AttackAnimation()
+        {
+            if (Test_InputManager.Instance.OnClickedAttackButton())
+                animator.SetTrigger("Attack");
+        }
     }
 }

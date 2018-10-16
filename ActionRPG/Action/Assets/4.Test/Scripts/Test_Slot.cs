@@ -2,46 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-
-public class Test_Slot : MonoBehaviour , IBeginDragHandler, IDragHandler, IDropHandler {
-
-    GameObject DragItemObject;
-    DragItem drag;
-
-    public Test_Slot slot;
-    public Transform item;
-
-    private void Start()
+namespace Test
+{
+    public class Test_Slot : MonoBehaviour , IDragHandler , IBeginDragHandler, IDropHandler
     {
-        DragItemObject = GameObject.FindGameObjectWithTag("DragItem");
-        drag = DragItemObject.GetComponent<DragItem>();
-        
-        
-        slot = this;
-    }
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        drag.preSlot = gameObject;
-        transform.GetChild(0).SetParent(DragItemObject.transform);
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Left)
+        public Image slotImage;
+        public int index;
+        Test_Inventory inventory;
+        DragItem dragitem;
+        public Text CountText;
+        private void Awake()
         {
-            DragItemObject.transform.position = Input.mousePosition;
+            inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Test_Inventory>();
+            dragitem = GameObject.FindGameObjectWithTag("DragItem").GetComponent<DragItem>();
+            slotImage = GetComponent<Image>();
+            CountText = GetComponentInChildren<Text>();
         }
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            dragitem.gameObject.SetActive(true);
+            dragitem.PreSlotIndex = index;
+            dragitem.DragImage.sprite = slotImage.sprite;
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            dragitem.gameObject.transform.position = Input.mousePosition;
+        }
+
+        public void OnDrop(PointerEventData eventData)
+        {
+            inventory.Swap(dragitem.PreSlotIndex, index);
+            dragitem.gameObject.SetActive(false);
+        }
+
+      
+
     }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-        gameObject.transform.GetChild(0).SetParent(drag.preSlot.transform);
-        DragItemObject.transform.GetChild(0).SetParent(gameObject.transform);
-        
-    }
-
-    
-
    
 }
