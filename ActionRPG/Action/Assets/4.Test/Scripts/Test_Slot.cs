@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace Test
 {
-    public class Test_Slot : MonoBehaviour , IDragHandler , IBeginDragHandler, IDropHandler
+    public class Test_Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler
     {
         public Image slotImage;
         public int index;
@@ -23,9 +23,9 @@ namespace Test
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            dragitem.gameObject.SetActive(true);
-            dragitem.PreSlotIndex = index;
-            dragitem.DragImage.sprite = slotImage.sprite;
+                dragitem.gameObject.SetActive(true);
+                dragitem.PreSlotIndex = index;
+                dragitem.DragImage.sprite = slotImage.sprite;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -36,11 +36,12 @@ namespace Test
         public void OnDrop(PointerEventData eventData)
         {
             inventory.Swap(dragitem.PreSlotIndex, index);
-            dragitem.gameObject.SetActive(false);
         }
 
-      
-
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            dragitem.gameObject.SetActive(false);
+        }
     }
-   
+
 }

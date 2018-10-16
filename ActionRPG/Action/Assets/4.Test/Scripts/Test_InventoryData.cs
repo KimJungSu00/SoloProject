@@ -35,7 +35,7 @@ namespace Test
         {
             for(int i = 0; i < ItemArray.Length;i++)
             {
-                if(ItemArray[i].item.Name == item.Name  && ItemArray[i].item.Code == item.Code)
+                if(ItemArray[i].item.Name == item.Name  && ItemArray[i].itemCount < item.ItemMaxCount)
                 {
                     ItemArray[i].itemCount++;
                     ItemArray[i].isFull = true;
