@@ -35,7 +35,7 @@ namespace Test
 
         public void OnDrop(PointerEventData eventData)
         {
-            inventory.Swap(dragitem.PreSlotIndex, index);
+            inventory.SwapInventory(dragitem.PreSlotIndex, index);
         }
 
         public void OnEndDrag(PointerEventData eventData)

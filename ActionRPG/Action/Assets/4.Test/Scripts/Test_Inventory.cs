@@ -13,7 +13,7 @@ namespace Test
         [SerializeField]
         GameObject slotPrefab;
 
-        public Test_Slot[] slotArray;
+        Test_Slot[] slotArray;
 
         [SerializeField]
         Test_InventoryData model;
@@ -42,10 +42,10 @@ namespace Test
 
         public void SlotUpdate()
         {
+            model.RemoveItem();
             for (int i = 0; i < SlotCount; i++)
             {
                 slotArray[i].slotImage.sprite = model.ItemArray[i].item.Sprite;
-                
                 slotArray[i].CountText.text = model.ItemArray[i].itemCount.ToString();
                 if (model.ItemArray[i].itemCount <= 1)
                 {
@@ -54,13 +54,39 @@ namespace Test
             }
         }
 
-        public void Swap(int slotAIndex, int slotBIndex)
+        public void SwapInventory(int slotAIndex, int slotBIndex)
+        {
+            if (model.ItemArray[slotAIndex].item.Code == model.ItemArray[slotBIndex].item.Code)
+            {
+                model.ItemArray[slotBIndex].itemCount += model.ItemArray[slotAIndex].itemCount;
+                model.ItemArray[slotAIndex].itemCount = 0;
+                if (model.ItemArray[slotBIndex].itemCount > model.ItemArray[slotBIndex].item.ItemMaxCount)
+                {
+                    model.ItemArray[slotAIndex].itemCount = model.ItemArray[slotBIndex].itemCount % model.ItemArray[slotBIndex].item.ItemMaxCount;
+                    model.ItemArray[slotBIndex].itemCount = model.ItemArray[slotBIndex].item.ItemMaxCount;
+                }
+            }
+            else
+            {
+                Swap(slotAIndex, slotBIndex);
+            }
+            SlotUpdate();
+        }
+
+
+        void Swap(int slotAIndex, int slotBIndex)
         {
             ItemStruct temp = model.ItemArray[slotAIndex];
             model.ItemArray[slotAIndex] = model.ItemArray[slotBIndex];
             model.ItemArray[slotBIndex] = temp;
-            SlotUpdate();
         }
 
+        public void SortInventory()
+        {
+            if (model.Sort())
+                SlotUpdate();
+        }
+
+       
     }
 }

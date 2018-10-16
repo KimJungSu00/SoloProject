@@ -11,7 +11,6 @@ namespace Test
         public Item item;
         public bool isFull;
         public int itemCount;
-        public int index;
     }
 
     [Serializable]
@@ -24,32 +23,46 @@ namespace Test
         private void Start()
         {
             ItemArray = new ItemStruct[inventory.SlotCount];
-            for (int i = 0; i < ItemArray.Length;i++)
+            for (int i = 0; i < ItemArray.Length; i++)
             {
                 ItemArray[i].item = ItemController.Instance.GetItem(0);
-                ItemArray[i].index = i;
             }
         }
 
         public void AddItem(Item item)
         {
-            for(int i = 0; i < ItemArray.Length;i++)
+            for (int i = 0; i < ItemArray.Length; i++)
             {
-                if(ItemArray[i].item.Name == item.Name  && ItemArray[i].itemCount < item.ItemMaxCount)
+                if (ItemArray[i].item.Code == item.Code && ItemArray[i].itemCount < item.ItemMaxCount)
                 {
                     ItemArray[i].itemCount++;
                     ItemArray[i].isFull = true;
                     break;
                 }
-                if(!ItemArray[i].isFull)
+                if (!ItemArray[i].isFull)
                 {
                     ItemArray[i].item = item;
                     ItemArray[i].itemCount = 1;
-                    ItemArray[i].index = i;
                     ItemArray[i].isFull = true;
                     break;
                 }
             }
+        }
+
+        public void RemoveItem()
+        {
+            for (int i = 0; i < ItemArray.Length; i++)
+            {
+               if(ItemArray[i].itemCount == 0)
+                {
+                    ItemArray[i].item = ItemController.Instance.GetItem(0);
+                    ItemArray[i].isFull = false;
+                }
+            }
+        }
+        public bool Sort()
+        {
+            return true;
         }
 
 
