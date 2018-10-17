@@ -15,11 +15,22 @@ namespace Test
             inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Test_Inventory>();
             type = SlotType.Inventory;
         }
+
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                inventory.Previousindex = index;
+                inventory.SendItem();
+            }
+        }
+
         public override void OnBeginDrag(PointerEventData eventData)
         {
             base.OnBeginDrag(eventData);
             inventory.Previousindex = index;
         }
+
         public override void OnDrop(PointerEventData eventData)
         {
             if (dragitem.PreSolt.type == type)

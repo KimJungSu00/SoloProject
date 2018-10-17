@@ -14,6 +14,14 @@ namespace Test
             equipWindow = GameObject.FindGameObjectWithTag("Equipment").GetComponent<Test_Equipment>();
             type = SlotType.Equipment;
         }
+        public override void OnPointerDown(PointerEventData eventData)
+        {
+            if (Input.GetMouseButton(1))
+            {
+                equipWindow.Previousindex = index;
+                equipWindow.SendItem();
+            }
+        }
 
         public override void OnBeginDrag(PointerEventData eventData)
         {
@@ -39,6 +47,7 @@ namespace Test
         }
 
        
+
 
     }
 }

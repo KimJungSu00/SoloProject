@@ -33,7 +33,7 @@ namespace Test
 
         public void SendItem()
         {
-
+            model.SendItem();
         }
     }
 }

@@ -32,11 +32,9 @@ namespace Test
         public void SendItem()
         {
             mediator.Send(EquipmentArray[equipmentPresenter.Previousindex], this);
-
             EquipmentArray[equipmentPresenter.Previousindex].Item = ItemController.Instance.GetItem(0);
             EquipmentArray[equipmentPresenter.Previousindex].ItemCount = 0;
             EquipmentArray[equipmentPresenter.Previousindex].IsFull = false;
-
             equipmentPresenter.SlotUpdate();
         }
 
@@ -54,6 +52,13 @@ namespace Test
                         EquipmentArray[(int)EquipType.Weapon] = item;
                         isSucces = true;
                     }
+                    else
+                    {
+                        equipmentPresenter.Previousindex = 0;
+                        SendItem();
+                        EquipmentArray[(int)EquipType.Weapon] = item;
+                        isSucces = true;
+                    }
                 }
                 else if (i <= (int)EquipType.Module && i != 0 
                     && item.Item.ItemType == ItemType.Module)
@@ -63,6 +68,20 @@ namespace Test
                         EquipmentArray[i] = item;
                         isSucces = true;
                     }
+                    if( i == (int)EquipType.Module && EquipmentArray[i].IsFull)
+                    {
+                        for(int j = (int)EquipType.Weapon + 1; j<= (int)EquipType.Module;j++)
+                        {
+                            if(EquipmentArray[j].Item.AttackPower< item.Item.AttackPower)
+                            {
+                                equipmentPresenter.Previousindex = j;
+                                SendItem();
+                                EquipmentArray[j] = item;
+                                isSucces = true;
+                                break;
+                            }
+                        }
+                    }
                 }
                 else if (i <= (int)EquipType.Shield && i > (int)EquipType.Module
                     && item.Item.ItemType == ItemType.Shield)
@@ -71,6 +90,20 @@ namespace Test
                     {
                         EquipmentArray[i] = item;
                         isSucces = true;
+                    }
+                    if (i == (int)EquipType.Shield && EquipmentArray[i].IsFull)
+                    {
+                        for (int j = (int)EquipType.Module + 1; j <= (int)EquipType.Shield; j++)
+                        {
+                            if (EquipmentArray[j].Item.DefencePower < item.Item.DefencePower)
+                            {
+                                equipmentPresenter.Previousindex = j;
+                                SendItem();
+                                EquipmentArray[j] = item;
+                                isSucces = true;
+                                break;
+                            }
+                        }
                     }
                 }
 

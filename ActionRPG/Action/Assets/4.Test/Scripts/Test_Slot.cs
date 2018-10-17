@@ -12,7 +12,7 @@ namespace Test
         Equipment,
         QuickSlot,
     }
-    public class Test_Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler
+    public class Test_Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler, IPointerDownHandler
     {
         // [HideInInspector]
         public Image slotImage;
@@ -50,6 +50,9 @@ namespace Test
         {
             dragitem.gameObject.SetActive(false);
         }
+
+        public virtual void OnPointerDown(PointerEventData eventData)
+        { }
     }
 
 }

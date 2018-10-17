@@ -154,8 +154,8 @@ namespace Test
                     ItemArray[i] = item;
                     break;
                 }
-                inventory.SlotUpdate();
             }
+            inventory.SlotUpdate();
         }
     }
 
