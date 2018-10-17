@@ -4,32 +4,37 @@ using UnityEngine;
 
 namespace Test
 {
-    
+    public enum EquipType
+    {
+        Weapon = 0,
+        Module = 3,
+        Shield = 9,
+    }
     public class Test_Equipment : MonoBehaviour
     {
         [SerializeField]
-        public Test_Slot weaponSlot;
-        [SerializeField]
-        public Test_Slot[] moduleSlot;
-        [SerializeField]
-        public Test_Slot[] sheildslot;
+        public Test_Slot[] EquipSlot;
+
 
         [SerializeField]
         Test_EquipmentData model;
+
+        public Test_Slot SelectedSlot;
+        public int Previousindex;
+
         public void SlotUpdate()
         {
-            weaponSlot.slotImage.sprite = model.Weapon.Item.Sprite;
-
-            for(int i = 0; i < model.Module.Length;i++)
-            {
-                moduleSlot[i].slotImage.sprite = model.Module[i].Item.Sprite;
-            }
-            for(int i = 0; i < model.Shield.Length;i++)
-            {
-                sheildslot[i].slotImage.sprite = model.Shield[i].Item.Sprite;
+            for (int i = 0; i < EquipSlot.Length; i++)
+            {  
+                EquipSlot[i].slotImage.sprite = model.EquipmentArray[i].Item.Sprite;
+                EquipSlot[i].index = i;
             }
         }
 
+        public void SendItem()
+        {
+
+        }
     }
 }
 

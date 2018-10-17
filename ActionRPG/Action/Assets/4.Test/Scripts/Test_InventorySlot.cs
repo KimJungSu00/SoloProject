@@ -13,6 +13,7 @@ namespace Test
         {
             base.Awake();  
             inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Test_Inventory>();
+            type = SlotType.Inventory;
         }
         public override void OnBeginDrag(PointerEventData eventData)
         {
@@ -21,7 +22,19 @@ namespace Test
         }
         public override void OnDrop(PointerEventData eventData)
         {
-            inventory.SwapInventory(index);
+            if (dragitem.PreSolt.type == type)
+            {
+                inventory.SwapInventory(index);
+            }
+            else
+            {
+                inventory.SendItem();
+            }
+        }
+
+        public void Send()
+        {
+            inventory.SendItem();
         }
     }
 }

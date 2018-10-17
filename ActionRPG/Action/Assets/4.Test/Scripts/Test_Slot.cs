@@ -6,28 +6,36 @@ using UnityEngine.UI;
 
 namespace Test
 {
+    public enum SlotType
+    {
+        Inventory,
+        Equipment,
+        QuickSlot,
+    }
     public class Test_Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler
     {
-       // [HideInInspector]
+        // [HideInInspector]
         public Image slotImage;
         [HideInInspector]
-        public int index;       
+        public int index;
         [HideInInspector]
         public Text CountText;
 
-        protected Image dragitem;
+        public SlotType type { get; protected set; }
+        protected DragItem dragitem;
 
         protected virtual void Awake()
         {
-            dragitem = GameObject.FindGameObjectWithTag("DragItem").GetComponent<Image>();
+            dragitem = GameObject.FindGameObjectWithTag("DragItem").GetComponent<DragItem>();
             slotImage = GetComponent<Image>();
             CountText = GetComponentInChildren<Text>();
         }
 
         public virtual void OnBeginDrag(PointerEventData eventData)
         {
-                dragitem.gameObject.SetActive(true);
-                dragitem.sprite = slotImage.sprite;
+            dragitem.gameObject.SetActive(true);
+            dragitem.DragImage.sprite = slotImage.sprite;
+            dragitem.PreSolt = this;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -36,7 +44,7 @@ namespace Test
         }
 
         public virtual void OnDrop(PointerEventData eventData)
-        {}
+        { }
 
         public void OnEndDrag(PointerEventData eventData)
         {

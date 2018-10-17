@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 using ItemGroup;
 
 namespace Test
@@ -11,16 +10,16 @@ namespace Test
         public Item Item;
         public bool IsFull;
         public int ItemCount;
-        public bool IsEquip;
     }
 
-    [Serializable]
-    public class Test_InventoryData : MonoBehaviour
+    public class Test_InventoryData : MonoBehaviour, IGameDatable
     {
         [SerializeField]
         Test_Inventory inventory;
         public ItemStruct[] ItemArray;
         ItemStruct[] buffer;
+        [SerializeField]
+        Test_GameMediator mediator;
         private void Start()
         {
             ItemArray = new ItemStruct[inventory.SlotCount];
@@ -39,7 +38,7 @@ namespace Test
                 {
                     ItemArray[i].ItemCount++;
                     ItemArray[i].IsFull = true;
-                    ItemArray[i].IsEquip = false;
+
                     break;
                 }
                 if (!ItemArray[i].IsFull)
@@ -47,7 +46,7 @@ namespace Test
                     ItemArray[i].Item = item;
                     ItemArray[i].ItemCount = 1;
                     ItemArray[i].IsFull = true;
-                    ItemArray[i].IsEquip = false;
+
                     break;
                 }
             }
@@ -57,32 +56,31 @@ namespace Test
         {
             for (int i = 0; i < ItemArray.Length; i++)
             {
-               if(ItemArray[i].ItemCount == 0)
+                if (ItemArray[i].ItemCount == 0)
                 {
                     ItemArray[i].Item = ItemController.Instance.GetItem(0);
                     ItemArray[i].IsFull = false;
-                    ItemArray[i].IsEquip = false;
+
                 }
             }
         }
-        
+
         public void EquipItem()
         {
 
         }
 
-        
+
         public bool Sort()
         {
-            
             MergeSort(ItemArray, buffer, 0, ItemArray.Length - 1);
             return true;
         }
 
-        void MergeSort(ItemStruct [] arr , ItemStruct[]buffer,int start,int end)
+        void MergeSort(ItemStruct[] arr, ItemStruct[] buffer, int start, int end)
         {
             int middle = 0;
-            if(start<end)
+            if (start < end)
             {
                 middle = (start + end) / 2;
                 MergeSort(arr, buffer, start, middle);
@@ -91,23 +89,23 @@ namespace Test
             }
         }
 
-        void MergeSortInternal(ItemStruct[] arr, ItemStruct[] buffer, int start,int middle, int end)
+        void MergeSortInternal(ItemStruct[] arr, ItemStruct[] buffer, int start, int middle, int end)
         {
             int i = start;
             int j = middle + 1;
             int k = start;
             int t;
 
-            while(i <= middle && j<=end)
+            while (i <= middle && j <= end)
             {
-                if(arr[i].Item.Code > arr[j].Item.Code)
+                if (arr[i].Item.Code > arr[j].Item.Code)
                 {
                     buffer[k] = arr[i];
                     i++;
                 }
-                else if(arr[i].Item.Code == arr[j].Item.Code)
+                else if (arr[i].Item.Code == arr[j].Item.Code)
                 {
-                    if(arr[i].ItemCount >= arr[j].ItemCount)
+                    if (arr[i].ItemCount >= arr[j].ItemCount)
                     {
                         buffer[k] = arr[i];
                         i++;
@@ -125,18 +123,40 @@ namespace Test
                 }
                 k++;
             }
-            if(i> middle)
-                for(t = j; t<= end; t++,k++)
+            if (i > middle)
+                for (t = j; t <= end; t++, k++)
                     buffer[k] = arr[t];
             else
-                for(t= i; t<= middle;t++,k++)
+                for (t = i; t <= middle; t++, k++)
                     buffer[k] = arr[t];
 
             for (t = start; t <= end; t++)
                 arr[t] = buffer[t];
         }
 
+        public void SendItem()
+        {
+            mediator.Send(ItemArray[inventory.Previousindex], this);
 
+            ItemArray[inventory.Previousindex].Item = ItemController.Instance.GetItem(0);
+            ItemArray[inventory.Previousindex].ItemCount = 0;
+            ItemArray[inventory.Previousindex].IsFull = false;
+
+            inventory.SlotUpdate();
+        }
+
+        public void ReceiveItem(ItemStruct item)
+        {
+            for (int i = 0; i < ItemArray.Length; i++)
+            {
+                if (!ItemArray[i].IsFull)
+                {
+                    ItemArray[i] = item;
+                    break;
+                }
+                inventory.SlotUpdate();
+            }
+        }
     }
 
 }

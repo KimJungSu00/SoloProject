@@ -33,6 +33,7 @@ namespace Test
                 slotArray[i] = Instantiate(slotPrefab).GetComponent<Test_Slot>();
                 slotArray[i].transform.SetParent(gameObject.transform);
                 slotArray[i].index = i;
+               
             }
         }
         public void Additem(int itemCode)
@@ -58,6 +59,8 @@ namespace Test
 
         public void SwapInventory(int slotBIndex)
         {
+            if (Previousindex == slotBIndex)
+                return;
             if (model.ItemArray[Previousindex].Item.Code == model.ItemArray[slotBIndex].Item.Code)
             {
                 model.ItemArray[slotBIndex].ItemCount += model.ItemArray[Previousindex].ItemCount;
@@ -89,6 +92,10 @@ namespace Test
                 SlotUpdate();
         }
 
-       
+        public void SendItem()
+        {
+            model.SendItem();
+        }
+           
     }
 }
