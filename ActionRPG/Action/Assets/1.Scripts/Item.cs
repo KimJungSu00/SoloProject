@@ -17,7 +17,7 @@ namespace ItemGroup
         public int Code;
         public string Name; 
         public ItemType ItemType;
-        public int ItemMaxCount;
+        public int MaxCount;
         public Sprite Sprite;
         public int HP;
         public int MP;

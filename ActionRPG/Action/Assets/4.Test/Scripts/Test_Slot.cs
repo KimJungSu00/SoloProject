@@ -8,24 +8,26 @@ namespace Test
 {
     public class Test_Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler
     {
+       // [HideInInspector]
         public Image slotImage;
-        public int index;
-        Test_Inventory inventory;
-        DragItem dragitem;
+        [HideInInspector]
+        public int index;       
+        [HideInInspector]
         public Text CountText;
-        private void Awake()
+
+        protected Image dragitem;
+
+        protected virtual void Awake()
         {
-            inventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Test_Inventory>();
-            dragitem = GameObject.FindGameObjectWithTag("DragItem").GetComponent<DragItem>();
+            dragitem = GameObject.FindGameObjectWithTag("DragItem").GetComponent<Image>();
             slotImage = GetComponent<Image>();
             CountText = GetComponentInChildren<Text>();
         }
 
-        public void OnBeginDrag(PointerEventData eventData)
+        public virtual void OnBeginDrag(PointerEventData eventData)
         {
                 dragitem.gameObject.SetActive(true);
-                dragitem.PreSlotIndex = index;
-                dragitem.DragImage.sprite = slotImage.sprite;
+                dragitem.sprite = slotImage.sprite;
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -33,10 +35,8 @@ namespace Test
             dragitem.gameObject.transform.position = Input.mousePosition;
         }
 
-        public void OnDrop(PointerEventData eventData)
-        {
-            inventory.SwapInventory(dragitem.PreSlotIndex, index);
-        }
+        public virtual void OnDrop(PointerEventData eventData)
+        {}
 
         public void OnEndDrag(PointerEventData eventData)
         {

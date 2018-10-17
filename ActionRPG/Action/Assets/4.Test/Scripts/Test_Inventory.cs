@@ -19,6 +19,8 @@ namespace Test
         Test_InventoryData model;
 
         Item item;
+
+        public int Previousindex;
         public void Awake()
         {
             MakeSlot();
@@ -45,30 +47,30 @@ namespace Test
             model.RemoveItem();
             for (int i = 0; i < SlotCount; i++)
             {
-                slotArray[i].slotImage.sprite = model.ItemArray[i].item.Sprite;
-                slotArray[i].CountText.text = model.ItemArray[i].itemCount.ToString();
-                if (model.ItemArray[i].itemCount <= 1)
+                slotArray[i].slotImage.sprite = model.ItemArray[i].Item.Sprite;
+                slotArray[i].CountText.text = model.ItemArray[i].ItemCount.ToString();
+                if (model.ItemArray[i].ItemCount <= 1)
                 {
                     slotArray[i].CountText.text = string.Empty;
                 }
             }
         }
 
-        public void SwapInventory(int slotAIndex, int slotBIndex)
+        public void SwapInventory(int slotBIndex)
         {
-            if (model.ItemArray[slotAIndex].item.Code == model.ItemArray[slotBIndex].item.Code)
+            if (model.ItemArray[Previousindex].Item.Code == model.ItemArray[slotBIndex].Item.Code)
             {
-                model.ItemArray[slotBIndex].itemCount += model.ItemArray[slotAIndex].itemCount;
-                model.ItemArray[slotAIndex].itemCount = 0;
-                if (model.ItemArray[slotBIndex].itemCount > model.ItemArray[slotBIndex].item.ItemMaxCount)
+                model.ItemArray[slotBIndex].ItemCount += model.ItemArray[Previousindex].ItemCount;
+                model.ItemArray[Previousindex].ItemCount = 0;
+                if (model.ItemArray[slotBIndex].ItemCount > model.ItemArray[slotBIndex].Item.MaxCount)
                 {
-                    model.ItemArray[slotAIndex].itemCount = model.ItemArray[slotBIndex].itemCount % model.ItemArray[slotBIndex].item.ItemMaxCount;
-                    model.ItemArray[slotBIndex].itemCount = model.ItemArray[slotBIndex].item.ItemMaxCount;
+                    model.ItemArray[Previousindex].ItemCount = model.ItemArray[slotBIndex].ItemCount % model.ItemArray[slotBIndex].Item.MaxCount;
+                    model.ItemArray[slotBIndex].ItemCount = model.ItemArray[slotBIndex].Item.MaxCount;
                 }
             }
             else
             {
-                Swap(slotAIndex, slotBIndex);
+                Swap(Previousindex, slotBIndex);
             }
             SlotUpdate();
         }

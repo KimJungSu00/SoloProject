@@ -69,16 +69,16 @@ namespace ItemGroup
                 Item item = new Item();
                 item.Code = itemTable.sheets[0].list[i].ID;
                 item.Name = itemTable.sheets[0].list[i].Name;
-                item.ItemMaxCount = 1;
+                item.MaxCount = 1;
                 switch (itemTable.sheets[0].list[i].Type)
                 {
                     case "Resource":
                         item.ItemType = ItemType.Resource;
-                        item.ItemMaxCount = resourceItemCount;
+                        item.MaxCount = resourceItemCount;
                         break;
                     case "Consume":
                         item.ItemType = ItemType.Consume;
-                        item.ItemMaxCount = consumeItemCount;
+                        item.MaxCount = consumeItemCount;
                         break;
                     case "Module":
                         item.ItemType = ItemType.Module;
