@@ -13,11 +13,23 @@ namespace Test
         Test_Equipment equipmentPresenter;
 
         [SerializeField]
+        Test_PlayerInfo playerInfoPresentere;
+
+        [SerializeField]
         Test_GameMediator mediator;
+
+
+
+        public int[] TotalStatus;
+        
         private void Start()
         {
+            TotalStatus = new int[4];
             MakeSlotData();
             equipmentPresenter.SlotUpdate();
+            SetTotalStatus();
+            
+            playerInfoPresentere.StatusUpdate();
         }
         void MakeSlotData()
         {
@@ -27,6 +39,7 @@ namespace Test
                 EquipmentArray[i].Item = ItemController.Instance.GetItem(0);
             }
             equipmentPresenter.SlotUpdate();
+           
         }
 
         public void SendItem()
@@ -35,7 +48,9 @@ namespace Test
             EquipmentArray[equipmentPresenter.Previousindex].Item = ItemController.Instance.GetItem(0);
             EquipmentArray[equipmentPresenter.Previousindex].ItemCount = 0;
             EquipmentArray[equipmentPresenter.Previousindex].IsFull = false;
+            SetTotalStatus();
             equipmentPresenter.SlotUpdate();
+            playerInfoPresentere.StatusUpdate();
         }
 
         public void ReceiveItem(ItemStruct item)
@@ -110,7 +125,24 @@ namespace Test
             }
             if (!isSucces)
                 mediator.Send(item, this);
+            SetTotalStatus();
             equipmentPresenter.SlotUpdate();
+            playerInfoPresentere.StatusUpdate();
+        }
+
+        void SetTotalStatus()
+        {
+            TotalStatus[(int)StatusType.HP] = 0;
+            TotalStatus[(int)StatusType.MP] = 0;
+            TotalStatus[(int)StatusType.ATK] = 0;
+            TotalStatus[(int)StatusType.DEF] = 0;
+            for (int i = 0; i < EquipmentArray.Length;i++)
+            {
+                TotalStatus[(int)StatusType.HP] += EquipmentArray[i].Item.HP;
+                TotalStatus[(int)StatusType.MP] += EquipmentArray[i].Item.MP;
+                TotalStatus[(int)StatusType.ATK] += EquipmentArray[i].Item.AttackPower;
+                TotalStatus[(int)StatusType.DEF] += EquipmentArray[i].Item.DefencePower;
+            }
         }
     }
 }

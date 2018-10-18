@@ -5,15 +5,6 @@ namespace Test
     public class Test_Player : Test_Character
     {
 
-        public int EquipmentSTK;
-        public int EquipmentDEF;
-
-        protected override void UpdateStatus()
-        {
-            base.UpdateStatus();
-            totalStrikingPower += EquipmentSTK;
-            totalDefensivePower += EquipmentDEF;
-        }
 
         private void FixedUpdate()
         {
