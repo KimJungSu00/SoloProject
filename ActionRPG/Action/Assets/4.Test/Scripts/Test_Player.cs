@@ -35,12 +35,13 @@ namespace Test
                 IsWalk = false;
                 moveSpeed = 0;
             }
-            velocity = direction * moveSpeed;
+            velocity = new Vector3(direction.x * (moveSpeed / 2) ,0,direction.z * moveSpeed);
             if (!isGround)
             {
                 velocity += Vector3.down * gravityPower;
             }
-            rigidbody.velocity = velocity * Time.deltaTime;
+             rigidbody.velocity = velocity * Time.deltaTime;
+           
         }
 
         protected void Rotate()
