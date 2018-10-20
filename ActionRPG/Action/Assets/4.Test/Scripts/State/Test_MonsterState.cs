@@ -7,7 +7,7 @@ namespace Test
     public interface Test_MonsterState
     {
         void Enter();
-        void Update();
+        void Do();
         void Exit();
     }
 }

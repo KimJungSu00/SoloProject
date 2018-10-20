@@ -6,7 +6,7 @@ namespace Test
 {
     public class Test_StateMove : Test_MonsterState
     {
-
+        
         Rigidbody rigidbody;
         GameObject target;
         GameObject gameObject;
@@ -26,7 +26,7 @@ namespace Test
             animator.SetFloat("Speed", 1);
         }
 
-        public void Update()
+        public void Do()
         {
             Move();
             Turn();

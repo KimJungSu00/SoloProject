@@ -33,11 +33,11 @@ namespace Test
         private void Update()
         {
             if (state != null)
-                state.Update();
+                state.Do();
         }
-        void ChangeState(MonsterState newState)
+        public void ChangeState(MonsterState newState)
         {
-            if (curruntState == newState)
+            if (curruntState == newState || curruntState == MonsterState.Death)
                 return;
             if (state != null)
                 state.Exit();
@@ -46,15 +46,19 @@ namespace Test
             {
 
                 case MonsterState.Patrol:
+                    state = new Test_StatePatrol();
                     break;
                 case MonsterState.Chasing:
                     state = new Test_StateMove(rigidbody, gameObject, 250f, animator);
                     break;
                 case MonsterState.Attack:
+                    state = new Test_StateAttack(animator,gameObject);
                     break;
                 case MonsterState.Hit:
+                    state = new Test_StateHit(animator);
                     break;
                 case MonsterState.Death:
+                    state = new Test_StateDie(animator);
                     break;
                 default:
                     state = new Test_StateIdle();
@@ -65,6 +69,26 @@ namespace Test
         }
 
         public void TestChangeState()
+        {
+            ChangeState(MonsterState.Chasing);
+        }
+        public void TestDeath()
+        {
+            ChangeState(MonsterState.Death);
+        }
+        public void TestHit()
+        {
+            ChangeState(MonsterState.Hit);
+        }
+        public void TestAttack()
+        {
+            ChangeState(MonsterState.Attack);
+        }
+        public void EndAttack()
+        { 
+            ChangeState(MonsterState.Idle);
+        }
+        public void HitEnd()
         {
             ChangeState(MonsterState.Chasing);
         }
