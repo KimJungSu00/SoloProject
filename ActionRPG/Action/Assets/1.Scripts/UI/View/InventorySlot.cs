@@ -11,6 +11,7 @@ namespace UI.View
         InventoryPresenter invenPresenter;
         public void SlotInitialize(InventoryPresenter presenter)
         {
+            
             SlotInitialize();
             invenPresenter = presenter;
         }
