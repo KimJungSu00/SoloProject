@@ -23,6 +23,7 @@ namespace UI.View
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            Debug.Log(name);
             dragItem.gameObject.SetActive(true);
             dragItem.ItemImage.sprite = ItemImage.sprite;
         }
