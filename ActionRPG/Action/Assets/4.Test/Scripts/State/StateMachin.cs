@@ -6,8 +6,6 @@ namespace Test
 {
     public enum MonsterState
     {
-        Idle,
-        Patrol,
         Chasing,
         Attack,
         Hit,
@@ -23,6 +21,9 @@ namespace Test
         MonsterState curruntState;
 
         public  Animator animator;
+
+        [SerializeField]
+        Collider attackCollider;
         private void Start()
         {
             rigidbody = GetComponent<Rigidbody>();
@@ -44,21 +45,18 @@ namespace Test
 
             switch (newState)
             {
-
-                case MonsterState.Patrol:
-                    state = new Test_StatePatrol();
-                    break;
                 case MonsterState.Chasing:
                     state = new Test_StateMove(rigidbody, gameObject, 250f, animator);
                     break;
                 case MonsterState.Attack:
-                    state = new Test_StateAttack(animator,gameObject);
+                    attackCollider.enabled = true;
+                    state = new Test_StateAttack(animator,gameObject);    
                     break;
                 case MonsterState.Hit:
                     state = new Test_StateHit(animator);
                     break;
                 case MonsterState.Death:
-                    state = new Test_StateDie(animator);
+                    state = new Test_StateDie(animator,gameObject);
                     break;
                 default:
                     state = new Test_StateIdle();
@@ -84,12 +82,21 @@ namespace Test
         {
             ChangeState(MonsterState.Attack);
         }
+
+        //Animation Events
+        
         public void EndAttack()
-        { 
-            ChangeState(MonsterState.Idle);
+        {
+            StartCoroutine(EndAttackDelay());
         }
         public void HitEnd()
         {
+            ChangeState(MonsterState.Chasing);
+        }
+
+        IEnumerator EndAttackDelay()
+        {
+            yield return new WaitForSeconds(2.0f);
             ChangeState(MonsterState.Chasing);
         }
     }

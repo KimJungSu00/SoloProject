@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ItemGroup;
+using UI.Presenter;
+using System;
 
-namespace Test
+
+namespace UI.Model
 {
     public struct ItemStruct
     {
@@ -11,68 +14,71 @@ namespace Test
         public bool IsFull;
         public int ItemCount;
     }
+    public delegate void UpdateSlotDelegate();
 
-    public class Test_InventoryData : MonoBehaviour, IGameDatable
+    public class InventoryModel : MonoBehaviour
     {
-        [SerializeField]
-        Test_Inventory inventory;
+        public const int INVENTORYCOUNT = 35;
+        InventoryPresenter InvenPresenter;
+        ItemStruct[] sortBuffer;
+        public int InventoryCount { get { return INVENTORYCOUNT; } private set { } }
         public ItemStruct[] ItemArray { get; private set; }
-        ItemStruct[] buffer;
-        [SerializeField]
-        Test_GameMediator mediator;
+        public UpdateSlotDelegate AddItemDelegate;
+
         private void Start()
         {
-            ItemArray = new ItemStruct[inventory.SlotCount];
-            buffer = new ItemStruct[ItemArray.Length * 2];
-            for (int i = 0; i < ItemArray.Length; i++)
+            InventoryInitialize();
+        }
+
+        public bool InventoryInitialize()
+        {
+            ItemArray = new ItemStruct[INVENTORYCOUNT];
+            for(int i =0; i< INVENTORYCOUNT; i++)
             {
                 ItemArray[i].Item = ItemController.Instance.GetItem(0);
             }
+            InvenPresenter = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryPresenter>();
+            InvenPresenter.InventoryInitialize(this);
+            return true;
         }
 
         public void AddItem(Item item)
         {
-            for (int i = 0; i < ItemArray.Length; i++)
+            for(int i = 0; i < INVENTORYCOUNT; i++)
             {
-                if (ItemArray[i].Item.Code == item.Code && ItemArray[i].ItemCount < item.MaxCount)
+                if(ItemArray[i].Item.Code == item.Code && ItemArray[i].ItemCount < item.MaxCount)
                 {
                     ItemArray[i].ItemCount++;
                     ItemArray[i].IsFull = true;
-
                     break;
                 }
-                if (!ItemArray[i].IsFull)
+                if(!ItemArray[i].IsFull)
                 {
                     ItemArray[i].Item = item;
                     ItemArray[i].ItemCount = 1;
                     ItemArray[i].IsFull = true;
-
                     break;
                 }
             }
+            AddItemDelegate();
         }
 
-        public void RemoveItem()
+        void ResetItem()
         {
-            for (int i = 0; i < ItemArray.Length; i++)
+            for(int i = 0; i < INVENTORYCOUNT; i ++)
             {
-                if (ItemArray[i].ItemCount == 0)
+                if(ItemArray[i].ItemCount == 0)
                 {
                     ItemArray[i].Item = ItemController.Instance.GetItem(0);
                     ItemArray[i].IsFull = false;
-
                 }
             }
+            AddItemDelegate();
         }
-
-        public void EquipItem()
-        {
-
-        }
-
 
         public bool Sort()
         {
+            ItemStruct[] buffer = new ItemStruct[INVENTORYCOUNT * 2];
             MergeSort(ItemArray, buffer, 0, ItemArray.Length - 1);
             return true;
         }
@@ -134,29 +140,34 @@ namespace Test
                 arr[t] = buffer[t];
         }
 
-        public void SendItem()
+        public void SwapItem(int indexA, int indexB)
         {
-            mediator.Send(ItemArray[inventory.Previousindex], this);
-
-            ItemArray[inventory.Previousindex].Item = ItemController.Instance.GetItem(0);
-            ItemArray[inventory.Previousindex].ItemCount = 0;
-            ItemArray[inventory.Previousindex].IsFull = false;
-
-            inventory.SlotUpdate();
-        }
-
-        public void ReceiveItem(ItemStruct item)
-        {
-            for (int i = 0; i < ItemArray.Length; i++)
+            if(ItemArray[indexA].Item.Code == ItemArray[indexB].Item.Code)
             {
-                if (!ItemArray[i].IsFull)
+                ItemArray[indexB].ItemCount += ItemArray[indexA].ItemCount;
+                ItemArray[indexA].ItemCount = 0;
+                if(ItemArray[indexB].ItemCount > ItemArray[indexB].Item.MaxCount)
                 {
-                    ItemArray[i] = item;
-                    break;
+                    ItemArray[indexA].ItemCount = ItemArray[indexB].ItemCount % ItemArray[indexB].Item.MaxCount;
+                    ItemArray[indexB].ItemCount = ItemArray[indexB].Item.MaxCount;
+                }
+                else
+                {
+                    Swap(indexA, indexB);
                 }
             }
-            inventory.SlotUpdate();
+            ResetItem();
         }
+
+        void Swap(int indexA, int indexB)
+        {
+            ItemStruct temp = ItemArray[indexA];
+            ItemArray[indexA] = ItemArray[indexB];
+            ItemArray[indexB] = temp;
+        }
+
+
     }
+
 
 }

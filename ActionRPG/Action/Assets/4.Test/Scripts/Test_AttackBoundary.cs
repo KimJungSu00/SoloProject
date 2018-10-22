@@ -9,11 +9,10 @@ namespace Test
         [SerializeField]
         StateMachin STM;
 
-
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
-            if(other.tag == "Player")
-            STM.ChangeState(MonsterState.Attack);
+            if (other.tag == "Player")
+                STM.ChangeState(MonsterState.Attack);
         }
 
     }

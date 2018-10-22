@@ -11,6 +11,7 @@ namespace Test
         float attackDelay = 2;
         GameObject gameObject;
         Animator animator;
+        
 
         public Test_StateAttack(Animator animator, GameObject gameObject)
         {
@@ -20,17 +21,11 @@ namespace Test
 
         public void Enter()
         {
-          //  target = GameObject.FindGameObjectWithTag("Player");
             animator.SetTrigger("Attack");
         }
 
         public void Do()
         {
-            //float distance = Vector3.Distance(gameObject.transform.position, target.transform.position);
-            //if(distance > distanceToPlayer)
-          //  {
-                
-          //  }
             
         }
 
