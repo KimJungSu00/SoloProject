@@ -156,6 +156,8 @@ namespace UI.Model
                     Swap(indexA, indexB);
                 }
             }
+            else
+                Swap(indexA, indexB);
             ResetItem();
         }
 
