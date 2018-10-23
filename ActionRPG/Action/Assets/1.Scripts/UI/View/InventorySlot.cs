@@ -19,11 +19,16 @@ namespace UI.View
         public override void OnPointerDown(PointerEventData eventData)
         {
             invenPresenter.SelectedSlotIndex = Index;
+            if (Input.GetMouseButton(1))
+            {
+                invenPresenter.UseItem();
+            }
+          
         }
 
         public override void OnDrop(PointerEventData eventData)
         {
-            invenPresenter.SlotSwap(Index);
+            invenPresenter.SwapSlot(Index);
         }
 
     }

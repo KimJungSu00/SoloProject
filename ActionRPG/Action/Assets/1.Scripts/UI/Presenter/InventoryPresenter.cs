@@ -22,8 +22,8 @@ namespace UI.Presenter
         {
             invenModel = model;
             MakeSlot();
-            invenModel.AddItemDelegate = SlotUpdate;
-            SlotUpdate();
+            invenModel.InvenUpdateDelegate = UpdateSlot;
+            UpdateSlot();
         }
 
         void MakeSlot()
@@ -39,7 +39,7 @@ namespace UI.Presenter
             }
         }
 
-        public void SlotUpdate()
+        public void UpdateSlot()
         {
             for (int i = 0; i < slotArray.Length; i++)
             {
@@ -52,16 +52,23 @@ namespace UI.Presenter
             }
         }
 
-        public void SlotSwap(int index)
+        public void SwapSlot(int index)
         {
             invenModel.SwapItem(SelectedSlotIndex, index);
-            SlotUpdate();
+            UpdateSlot();
         }
 
         public void SortInventory()
         {
             if (invenModel.Sort())
-                SlotUpdate();
+                UpdateSlot();
+        }
+
+        public void UseItem()
+        {
+            if (invenModel.UseItem())
+                UpdateSlot();
+
         }
     }
 }

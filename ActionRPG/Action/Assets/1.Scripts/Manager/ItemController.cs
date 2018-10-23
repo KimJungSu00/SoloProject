@@ -90,19 +90,6 @@ namespace ItemGroup
                         item.ItemType = ItemType.Shield;
                         break;
 
-                        /*
-                        case "Resource":
-                            item.ItemType = ItemType.Resource;
-                            item.ItemMaxCount = resourceItemCount;
-                            break;
-                        case "Consume":
-                            item.ItemType = ItemType.Consume;
-                            item.ItemMaxCount = consumeItemCount;
-                            break;
-                        case "Equipment":
-                            item.ItemType = ItemType.Equipment;
-                            item.ItemMaxCount = 1;
-                            break;*/
                 }
                 item.HP = itemTable.sheets[0].list[i].HP;
                 item.MP = itemTable.sheets[0].list[i].MP;

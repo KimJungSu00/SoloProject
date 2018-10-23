@@ -1,9 +1,8 @@
-﻿
-namespace UI.Model
+﻿namespace UI.Model
 {
     public interface IItemExchangeable
     {
         void Send();
-        void Receive();
+        void Receive(ItemStruct item);
     }
 }

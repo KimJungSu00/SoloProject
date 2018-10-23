@@ -121,7 +121,6 @@ namespace Test
                         }
                     }
                 }
-
             }
             if (!isSucces)
                 mediator.Send(item, this);

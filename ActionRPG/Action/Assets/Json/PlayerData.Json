@@ -1,0 +1,321 @@
+{
+    "InventoryArray": [
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 200000
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 200000
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        }
+    ],
+    "EquipmentArray": [
+        {
+            "Item": {
+                "Code": 200000
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        }
+    ]
+}

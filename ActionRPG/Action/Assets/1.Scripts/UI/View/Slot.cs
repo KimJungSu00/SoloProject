@@ -8,7 +8,7 @@ namespace UI.View
 {
     public class Slot : MonoBehaviour, IDragHandler, IBeginDragHandler, IDropHandler, IEndDragHandler, IPointerDownHandler
     {
-        DragItem dragItem;
+        protected DragItem dragItem;
 
         public Image ItemImage;
         public int Index;
@@ -23,7 +23,6 @@ namespace UI.View
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log(name);
             dragItem.gameObject.SetActive(true);
             dragItem.ItemImage.sprite = ItemImage.sprite;
         }

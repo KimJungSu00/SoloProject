@@ -4,26 +4,29 @@ using UnityEngine;
 using ItemGroup;
 using UI.Presenter;
 using System;
-
+using Manager;
 
 namespace UI.Model
 {
+    [Serializable]
     public struct ItemStruct
     {
+        
         public Item Item;
         public bool IsFull;
         public int ItemCount;
     }
-    public delegate void UpdateSlotDelegate();
+    public delegate void UpdateInvenSlotDelegate();
 
-    public class InventoryModel : MonoBehaviour
+    public class InventoryModel : MonoBehaviour , IItemExchangeable
     {
         public const int INVENTORYCOUNT = 35;
-        InventoryPresenter InvenPresenter;
-        ItemStruct[] sortBuffer;
+        InventoryPresenter invenPresenter;
         public int InventoryCount { get { return INVENTORYCOUNT; } private set { } }
         public ItemStruct[] ItemArray { get; private set; }
-        public UpdateSlotDelegate AddItemDelegate;
+        public UpdateInvenSlotDelegate InvenUpdateDelegate;
+
+        ItemMediator mediator;
 
         private void Start()
         {
@@ -33,17 +36,22 @@ namespace UI.Model
         public bool InventoryInitialize()
         {
             ItemArray = new ItemStruct[INVENTORYCOUNT];
-            for(int i =0; i< INVENTORYCOUNT; i++)
+            mediator = GameObject.FindGameObjectWithTag("ItemMediator").GetComponent<ItemMediator>();
+            for (int i =0; i< INVENTORYCOUNT; i++)
             {
                 ItemArray[i].Item = ItemController.Instance.GetItem(0);
+             
             }
-            InvenPresenter = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryPresenter>();
-            InvenPresenter.InventoryInitialize(this);
+            invenPresenter = GameObject.FindGameObjectWithTag("Inventory").GetComponent<InventoryPresenter>();
+            invenPresenter.InventoryInitialize(this);
+            GameDataManager.Instance.loadCallback += LoadItem;
             return true;
         }
 
         public void AddItem(Item item)
         {
+            if (item.ItemType == ItemType.Default)
+                return;
             for(int i = 0; i < INVENTORYCOUNT; i++)
             {
                 if(ItemArray[i].Item.Code == item.Code && ItemArray[i].ItemCount < item.MaxCount)
@@ -60,7 +68,7 @@ namespace UI.Model
                     break;
                 }
             }
-            AddItemDelegate();
+            InvenUpdateDelegate();
         }
 
         void ResetItem()
@@ -73,7 +81,7 @@ namespace UI.Model
                     ItemArray[i].IsFull = false;
                 }
             }
-            AddItemDelegate();
+            InvenUpdateDelegate();
         }
 
         public bool Sort()
@@ -168,7 +176,43 @@ namespace UI.Model
             ItemArray[indexB] = temp;
         }
 
+        public void Send()
+        {
+            mediator.SendItem(ItemArray[invenPresenter.SelectedSlotIndex], this);
+            ItemArray[invenPresenter.SelectedSlotIndex].Item = ItemController.Instance.GetItem(0);
+            ItemArray[invenPresenter.SelectedSlotIndex].IsFull = false;
+            InvenUpdateDelegate();
+        }
 
+        public void Receive(ItemStruct item)
+        {
+            AddItem(item.Item);
+            InvenUpdateDelegate();
+        }
+        
+        public bool UseItem()
+        {
+            if(ItemArray[invenPresenter.SelectedSlotIndex].Item.ItemType == ItemType.Consume)
+            {
+                ItemArray[invenPresenter.SelectedSlotIndex].ItemCount--;
+            }
+            else if(ItemArray[invenPresenter.SelectedSlotIndex].Item.ItemType != ItemType.Default)
+            {
+                Send();
+            }
+            ResetItem();
+            return true;
+        }
+
+        public void LoadItem()
+        {
+            ItemArray = GameDataManager.Instance.playerdata.InventoryArray;
+            for(int i = 0; i < ItemArray.Length; i++)
+            {
+                ItemArray[i].Item = ItemController.Instance.GetItem(ItemArray[i].Item.Code);
+            }
+            InvenUpdateDelegate();
+        }
     }
 
 

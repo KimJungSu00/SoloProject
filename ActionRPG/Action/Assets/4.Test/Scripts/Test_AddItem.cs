@@ -12,4 +12,9 @@ public class Test_AddItem : MonoBehaviour {
     {
         model.AddItem(ItemController.Instance.GetItem(Code));
     }
+
+    public void Send()
+    {
+        model.Send();
+    }
 }
