@@ -5,11 +5,74 @@
                 "Code": 0
             },
             "IsFull": false,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 213000
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
             "ItemCount": 0
         },
         {
             "Item": {
-                "Code": 200000
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 200001
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 0
+            },
+            "IsFull": false,
+            "ItemCount": 0
+        },
+        {
+            "Item": {
+                "Code": 213000
+            },
+            "IsFull": true,
+            "ItemCount": 1
+        },
+        {
+            "Item": {
+                "Code": 213000
             },
             "IsFull": true,
             "ItemCount": 1
@@ -54,70 +117,7 @@
                 "Code": 0
             },
             "IsFull": false,
-            "ItemCount": 1
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
             "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 0
-            },
-            "IsFull": false,
-            "ItemCount": 0
-        },
-        {
-            "Item": {
-                "Code": 200000
-            },
-            "IsFull": true,
-            "ItemCount": 1
         },
         {
             "Item": {
@@ -249,52 +249,52 @@
     "EquipmentArray": [
         {
             "Item": {
-                "Code": 200000
+                "Code": 200001
             },
             "IsFull": true,
             "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 211100
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 211100
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 211100
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 221000
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 222000
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {
-                "Code": 0
+                "Code": 222000
             },
-            "IsFull": false,
-            "ItemCount": 0
+            "IsFull": true,
+            "ItemCount": 1
         },
         {
             "Item": {

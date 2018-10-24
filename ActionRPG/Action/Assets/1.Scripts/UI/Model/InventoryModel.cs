@@ -150,7 +150,8 @@ namespace UI.Model
 
         public void SwapItem(int indexA, int indexB)
         {
-            if(ItemArray[indexA].Item.Code == ItemArray[indexB].Item.Code)
+            
+            if(ItemArray[indexA].Item.Code == ItemArray[indexB].Item.Code && (int)ItemArray[indexA].Item.ItemType>=16)
             {
                 ItemArray[indexB].ItemCount += ItemArray[indexA].ItemCount;
                 ItemArray[indexA].ItemCount = 0;

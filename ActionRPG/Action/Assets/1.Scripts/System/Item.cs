@@ -6,7 +6,7 @@ namespace ItemGroup
 
     public enum ItemType
     {
-        Default,
+        Default = 64,
         Resource = 32,
         Consume = 16,
         Weapon = 8,

@@ -21,10 +21,10 @@ namespace UI.Presenter
         public int SelectedSlotIndex;
 
         [SerializeField]
-        GameObject[] slotPosition;
+        public GameObject[] SlotPosition;
 
         [SerializeField]
-        GameObject slotPrefab;
+        public GameObject SlotPrefab;
 
         public void EquipmentInitialzie(EquipmentModel model)
         { 
@@ -39,22 +39,22 @@ namespace UI.Presenter
             slotArray = new EquipmentSlot[equipModel.EquipmentCount];
             for (int i = 0; i < equipModel.EquipmentCount; i++)
             {
-                slotArray[i] = Instantiate(slotPrefab).GetComponent<EquipmentSlot>();
+                slotArray[i] = Instantiate(SlotPrefab).GetComponent<EquipmentSlot>();
 
                 if (i <= (int)SlotItemType.Weapon)
                 {
-                    slotArray[i].transform.SetParent(slotPosition[0].transform);
+                    slotArray[i].transform.SetParent(SlotPosition[0].transform);
                 }
                 else if (i <= (int)SlotItemType.Module)
                 {
-                    slotArray[i].transform.SetParent(slotPosition[1].transform);
+                    slotArray[i].transform.SetParent(SlotPosition[1].transform);
                 }
                 else
                 {
                     if (i < ((int)SlotItemType.Shield / 2) + 3)
-                        slotArray[i].transform.SetParent(slotPosition[2].transform);
+                        slotArray[i].transform.SetParent(SlotPosition[2].transform);
                     else
-                        slotArray[i].transform.SetParent(slotPosition[3].transform);
+                        slotArray[i].transform.SetParent(SlotPosition[3].transform);
                 }
                 slotArray[i].Index = i;
                 slotArray[i].SlotInitialize(this);

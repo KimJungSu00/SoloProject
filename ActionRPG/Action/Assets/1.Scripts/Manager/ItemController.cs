@@ -60,7 +60,7 @@ namespace ItemGroup
             MakeItemPool();
         }
         
-        List<Item> itemPool = new List<Item>();
+        public List<Item> itemPool = new List<Item>();
 
         public void MakeItemPool()
         {
