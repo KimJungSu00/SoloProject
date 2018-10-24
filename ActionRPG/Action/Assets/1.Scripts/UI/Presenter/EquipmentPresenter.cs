@@ -21,7 +21,7 @@ namespace UI.Presenter
         public int SelectedSlotIndex;
 
         [SerializeField]
-        public GameObject[] SlotPosition;
+        public GameObject[] SlotPosition = new GameObject[4];
 
         [SerializeField]
         public GameObject SlotPrefab;
